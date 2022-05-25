@@ -7,11 +7,12 @@ import Element.PravdomilUi exposing (..)
 import File
 import File.Select
 import Json.Decode
-import Midi
 import Midi.Decode
 import Piano.Model
+import Piano.Score
 import Piano.Translation
 import Piano.UserInterface exposing (..)
+import Set
 import Task
 import Url
 
@@ -78,7 +79,7 @@ update msg model =
                     c
                         |> Midi.Decode.file
                         |> Result.fromMaybe Piano.Model.DecodeError
-                        |> Result.map (Tuple.pair b)
+                        |> Result.map (\v -> Piano.Model.File b v Set.empty)
               }
             , Cmd.none
             )
@@ -108,53 +109,37 @@ view model =
 
 viewBody : Piano.Model.Model -> Element Piano.Model.Msg
 viewBody model =
-    column [ padding 16, spacing 16 ]
-        [ button theme
-            []
-            { label = text "Select MIDI File"
-            , onPress = Just Piano.Model.SelectFile
-            }
+    column [ width fill, height fill, spacing 16 ]
+        [ viewHeader model
         , case model.file of
-            Ok ( b, c ) ->
-                column [ spacing 8 ]
-                    ([ paragraph theme
-                        []
-                        [ text ("Name: " ++ File.name b)
-                        ]
-                     , paragraph theme
-                        []
-                        [ text
-                            ("Format: "
-                                ++ (case c.format of
-                                        Midi.Simultaneous ->
-                                            "Simultaneous"
+            Ok b ->
+                Piano.Score.viewFile b
 
-                                        Midi.Independent ->
-                                            "Independent"
-                                   )
-                            )
-                        ]
-                     , paragraph theme
-                        []
-                        [ text ("Tempo: " ++ (\(Midi.TicksPerBeat v) -> String.fromInt v) c.tempo)
-                        ]
-                     ]
-                        ++ (c.tracks |> (\( v1, v2 ) -> v1 :: v2) |> List.map viewTrack)
-                    )
-
-            Err b ->
-                case b of
-                    Piano.Model.NotLoaded ->
-                        none
-
-                    Piano.Model.DecodeError ->
-                        paragraph theme
-                            []
-                            [ text "Cannot read MIDI file."
-                            ]
+            Err _ ->
+                none
         ]
 
 
-viewTrack : Midi.Track -> Element msg
-viewTrack a =
-    text (Debug.toString a)
+viewHeader : Piano.Model.Model -> Element Piano.Model.Msg
+viewHeader model =
+    column [ width fill, paddingXY 16 0, spacing 16 ]
+        [ el [] none
+        , row [ spacing 8, centerX ]
+            [ case model.file of
+                Ok b ->
+                    text (File.name b.file)
+
+                Err b ->
+                    case b of
+                        Piano.Model.NotLoaded ->
+                            none
+
+                        Piano.Model.DecodeError ->
+                            text "Cannot read MIDI file."
+            , linkWithOnPress theme
+                []
+                { label = text "Select MIDI File"
+                , onPress = Just Piano.Model.SelectFile
+                }
+            ]
+        ]
