@@ -4,6 +4,7 @@ import Browser
 import Browser.QueryRouter
 import Bytes
 import Dict
+import Dict.Any
 import File
 import Midi
 import Url
@@ -12,7 +13,14 @@ import Url.QueryString
 
 type alias Model =
     { router : Browser.QueryRouter.QueryRouter Page
-    , file : Result FileError ( File.File, Midi.File )
+    , file : Result FileError File
+    }
+
+
+type alias File =
+    { file : File.File
+    , midi : Midi.File
+    , disabledTracks : Dict.Any.Dict TrackNumber ()
     }
 
 
@@ -51,3 +59,17 @@ type Msg
     | SelectFile
     | FileSelected File.File
     | FileLoaded File.File Bytes.Bytes
+    | ToogleTrack TrackNumber Bool
+
+
+
+--
+
+
+type TrackNumber
+    = TrackNumber Int
+
+
+trackNumberToInt : TrackNumber -> Int
+trackNumberToInt (TrackNumber a) =
+    a

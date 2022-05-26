@@ -3,6 +3,7 @@ module Piano exposing (..)
 import Browser
 import Browser.Navigation
 import Browser.QueryRouter
+import Dict.Any
 import Element.PravdomilUi exposing (..)
 import File
 import File.Select
@@ -79,7 +80,26 @@ update msg model =
                     c
                         |> Midi.Decode.file
                         |> Result.fromMaybe Piano.Model.DecodeError
-                        |> Result.map (\v -> Piano.Model.File b v Set.empty)
+                        |> Result.map (\v -> Piano.Model.File b v Dict.Any.empty)
+              }
+            , Cmd.none
+            )
+
+        Piano.Model.ToogleTrack b c ->
+            ( { model
+                | file =
+                    model.file
+                        |> Result.map
+                            (\v ->
+                                { v
+                                    | disabledTracks =
+                                        if not c then
+                                            Dict.Any.insert Piano.Model.trackNumberToInt b () v.disabledTracks
+
+                                        else
+                                            Dict.Any.remove Piano.Model.trackNumberToInt b v.disabledTracks
+                                }
+                            )
               }
             , Cmd.none
             )
@@ -136,6 +156,30 @@ viewHeader model =
 
                         Piano.Model.DecodeError ->
                             text "Cannot read MIDI file."
+            , case model.file of
+                Ok b ->
+                    row [ spacing 8 ]
+                        (b.midi.tracks
+                            |> (\( v1, v2 ) -> v1 :: v2)
+                            |> List.indexedMap
+                                (\i _ ->
+                                    let
+                                        number : Piano.Model.TrackNumber
+                                        number =
+                                            Piano.Model.TrackNumber i
+                                    in
+                                    inputCheckbox
+                                        []
+                                        { icon = inputDefaultCheckbox
+                                        , label = labelRight theme [] (text (String.fromInt (Piano.Model.trackNumberToInt number + 1)))
+                                        , checked = b.disabledTracks |> Dict.Any.member Piano.Model.trackNumberToInt number |> not
+                                        , onChange = Piano.Model.ToogleTrack number
+                                        }
+                                )
+                        )
+
+                Err _ ->
+                    none
             , linkWithOnPress theme
                 []
                 { label = text "Select MIDI File"
