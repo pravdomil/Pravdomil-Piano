@@ -66,7 +66,7 @@ viewNotes file notes =
                         el
                             [ width (px width_)
                             , height (px 1)
-                            , moveDown (toFloat (noteHeight * 12 * v))
+                            , moveDown (toFloat (noteHeight * 12 * v + noteHeight * 3))
                             , bgColor style.black40
                             ]
                             none
