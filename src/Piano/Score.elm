@@ -226,37 +226,37 @@ noteToInterval : Note -> Int
 noteToInterval a =
     case a of
         A ->
-            3
-
-        Ax ->
-            10
-
-        B ->
-            5
-
-        C ->
             0
 
-        Cx ->
+        Ax ->
             7
 
-        D ->
+        B ->
             2
 
-        Dx ->
+        C ->
             9
 
-        E ->
+        Cx ->
             4
 
-        F ->
+        D ->
             11
 
-        Fx ->
+        Dx ->
             6
 
-        G ->
+        E ->
             1
 
-        Gx ->
+        F ->
             8
+
+        Fx ->
+            3
+
+        G ->
+            10
+
+        Gx ->
+            5
