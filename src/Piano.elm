@@ -13,7 +13,6 @@ import Piano.Model
 import Piano.Score
 import Piano.Translation
 import Piano.UserInterface exposing (..)
-import Set
 import Task
 import Url
 
@@ -122,7 +121,7 @@ view : Piano.Model.Model -> Browser.Document Piano.Model.Msg
 view model =
     { title = Piano.Translation.title
     , body =
-        [ Element.PravdomilUi.layout theme [] (viewBody model)
+        [ Element.PravdomilUi.layout theme [ width fill, height (px 800) ] (viewBody model)
         ]
     }
 
