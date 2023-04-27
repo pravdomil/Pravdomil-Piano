@@ -100,7 +100,7 @@ viewNotes file notes =
                 [ width (px (max 8 (round (ticksToFloat b.length))))
                 , height (px noteHeight)
                 , moveRight (ticksToFloat b.time)
-                , moveDown (toFloat (height_ - (((\(Midi.Note v) -> v) b.note - 24) * noteHeight + noteHeight * 3)) - (toFloat noteHeight / 2))
+                , moveDown (toFloat (height_ - (((\(Midi.Note v) -> v) b.note - 24) * noteHeight)) - (toFloat noteHeight / 2))
                 , bgColor (noteToColor b.note)
                 , borderShadow (style.shadow 4)
                 , borderRounded 4
