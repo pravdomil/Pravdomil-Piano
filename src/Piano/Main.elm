@@ -1,4 +1,4 @@
-module Piano exposing (..)
+module Piano.Main exposing (..)
 
 import Browser
 import Browser.Navigation

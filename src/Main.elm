@@ -1,7 +1,7 @@
 module Main exposing (..)
 
-import Piano
+import Piano.Main
 
 
 main =
-    Piano.main
+    Piano.Main.main
