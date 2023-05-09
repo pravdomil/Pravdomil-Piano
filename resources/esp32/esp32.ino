@@ -37,14 +37,14 @@ void loop() {
       temp[i] = shiftIn();
 
     for (uint8_t i = 0; i < chips; i++) {
-      PLAY(8, 7 + ((chips - 1 - i) * 8));
-      PLAY(1, 6 + ((chips - 1 - i) * 8));
-      PLAY(4, 5 + ((chips - 1 - i) * 8));
-      PLAY(2, 4 + ((chips - 1 - i) * 8));
-      PLAY(64, 3 + ((chips - 1 - i) * 8));
-      PLAY(32, 2 + ((chips - 1 - i) * 8));
-      PLAY(128, 1 + ((chips - 1 - i) * 8));
       PLAY(16, 0 + ((chips - 1 - i) * 8));
+      PLAY(128, 1 + ((chips - 1 - i) * 8));
+      PLAY(32, 2 + ((chips - 1 - i) * 8));
+      PLAY(64, 3 + ((chips - 1 - i) * 8));
+      PLAY(2, 4 + ((chips - 1 - i) * 8));
+      PLAY(4, 5 + ((chips - 1 - i) * 8));
+      PLAY(1, 6 + ((chips - 1 - i) * 8));
+      PLAY(8, 7 + ((chips - 1 - i) * 8));
     }
 
     for (uint8_t i = 0; i < chips; i++)
