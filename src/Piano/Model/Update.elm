@@ -14,7 +14,8 @@ import Task
 
 init : Json.Decode.Value -> ( Piano.Model.Model, Cmd Piano.Msg.Msg )
 init _ =
-    ( Piano.Model.Model (Err Piano.Model.NotLoaded)
+    ( Piano.Model.Model
+        (Err Piano.Model.NotLoaded)
     , Cmd.none
     )
 
