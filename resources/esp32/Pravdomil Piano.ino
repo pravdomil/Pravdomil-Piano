@@ -32,7 +32,7 @@ void loop() {
   digitalWrite(latchPin, 1);
 
   for (uint8_t i = 0; i < chips; i++) {
-    auto value = shiftIn2();
+    auto value = shiftIn();
 
     if (BLEMidiServer.isConnected()) {
       PLAY(8, 0 + ((chips - 1 - i) * 8));
@@ -51,7 +51,7 @@ void loop() {
   delay(10);
 }
 
-uint8_t shiftIn2() {
+uint8_t shiftIn() {
   uint8_t value = 0;
 
   for (uint8_t i = 0; i < 8; i++) {
