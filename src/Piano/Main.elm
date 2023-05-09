@@ -158,7 +158,7 @@ viewHeader model =
                 Ok b ->
                     row [ spacing 8 ]
                         (b.midi.tracks
-                            |> (\( v1, v2 ) -> v1 :: v2)
+                            |> (\( x, x2 ) -> x :: x2)
                             |> List.indexedMap
                                 (\i _ ->
                                     let
