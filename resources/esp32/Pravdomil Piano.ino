@@ -13,7 +13,6 @@ auto clockPin = 2;
 auto latchPin = 4;
 auto dataPin = 5;
 auto powerPin = 15;
-
 auto chips = 8;
 
 void setup() {
