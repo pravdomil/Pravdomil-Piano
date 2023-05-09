@@ -17,8 +17,8 @@ viewFile a =
             a.midi.tracks
                 |> (\( v1, v2 ) -> v1 :: v2)
                 |> List.Extra.removeIfIndex
-                    (\v ->
-                        Dict.Any.member Piano.Model.trackNumberToInt (Piano.Model.TrackNumber v) a.disabledTracks
+                    (\x ->
+                        Dict.Any.member Piano.Model.trackNumberToInt (Piano.Model.TrackNumber x) a.disabledTracks
                     )
 
         notes : List Piano.Note.Note
@@ -50,7 +50,7 @@ viewNotes file notes =
         width_ : Int
         width_ =
             notes
-                |> List.foldl (\v acc -> max (ticksToFloat v.time + ticksToFloat v.length) acc) 0
+                |> List.foldl (\x acc -> max (ticksToFloat x.time + ticksToFloat x.length) acc) 0
                 |> ceiling
                 |> (+) 32
 
@@ -62,11 +62,11 @@ viewNotes file notes =
         octaveLines =
             List.range 1 (numberOfOctaves - 1)
                 |> List.map
-                    (\v ->
+                    (\x ->
                         el
                             [ width (px width_)
                             , height (px 1)
-                            , moveDown (toFloat (noteHeight * 12 * v))
+                            , moveDown (toFloat (noteHeight * 12 * x))
                             , bgColor style.black40
                             ]
                             none
@@ -80,11 +80,11 @@ viewNotes file notes =
         bars =
             List.range 1 (ceiling (toFloat width_ / barsSpacing))
                 |> List.map
-                    (\v ->
+                    (\x ->
                         el
                             [ width (px 1)
                             , height (px height_)
-                            , moveRight (barsSpacing * toFloat v)
+                            , moveRight (barsSpacing * toFloat x)
                             , bgColor style.black20
                             ]
                             none
