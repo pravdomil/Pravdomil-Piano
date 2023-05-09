@@ -11,7 +11,6 @@ import Json.Decode
 import Midi.Decode
 import Piano.Model
 import Piano.Score
-import Piano.Translation
 import Piano.Utils.Theme exposing (..)
 import Task
 import Url
@@ -119,7 +118,7 @@ subscriptions _ =
 
 view : Piano.Model.Model -> Browser.Document Piano.Model.Msg
 view model =
-    { title = Piano.Translation.title
+    { title = "Pravdomil Piano"
     , body =
         [ Element.PravdomilUi.layout theme [ width fill, height (px 800) ] (viewBody model)
         ]
