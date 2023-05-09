@@ -28,11 +28,13 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(latchPin, 0);
-  digitalWrite(latchPin, 1);
+  if (BLEMidiServer.isConnected()) {
+    digitalWrite(latchPin, 0);
+    digitalWrite(latchPin, 1);
 
-  for (uint8_t i = 0; i < chips; i++) {
-    auto value = shiftIn();
+    uint8_t temp[chips];
+    for (uint8_t i = 0; i < chips; i++)
+      temp[i] = shiftIn();
 
     if (BLEMidiServer.isConnected()) {
       PLAY(8, 0 + ((chips - 1 - i) * 8));
