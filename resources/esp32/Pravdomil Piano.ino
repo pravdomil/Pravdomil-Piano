@@ -2,8 +2,8 @@
 #include <BLEMidi.h>
 
 #define PLAY(a, b)                                                             \
-  if ((status[i] & a) != (value & a)) {                                        \
-    if (value & a)                                                             \
+  if ((status[i] & a) != (temp[i] & a)) {                                      \
+    if (temp[i] & a)                                                           \
       BLEMidiServer.noteOn(0, 64 - b, 127);                                    \
     else                                                                       \
       BLEMidiServer.noteOff(0, 64 - b, 127);                                   \
@@ -36,7 +36,7 @@ void loop() {
     for (uint8_t i = 0; i < chips; i++)
       temp[i] = shiftIn();
 
-    if (BLEMidiServer.isConnected()) {
+    for (uint8_t i = 0; i < chips; i++) {
       PLAY(8, 0 + ((chips - 1 - i) * 8));
       PLAY(1, 1 + ((chips - 1 - i) * 8));
       PLAY(4, 2 + ((chips - 1 - i) * 8));
