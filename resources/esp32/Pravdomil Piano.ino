@@ -47,7 +47,8 @@ void loop() {
       PLAY(16, 7 + ((chips - 1 - i) * 8));
     }
 
-    status[i] = value;
+    for (uint8_t i = 0; i < chips; i++)
+      status[i] = temp[i];
   }
 
   delay(10);
