@@ -60,5 +60,6 @@ uint8_t shiftIn2(uint8_t dataPin, uint8_t clockPin) {
     digitalWrite(clockPin, LOW);
     digitalWrite(clockPin, HIGH);
   }
+
   return value;
 }
