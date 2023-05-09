@@ -15,7 +15,7 @@ viewFile a =
         tracks : List Midi.Track
         tracks =
             a.midi.tracks
-                |> (\( v1, v2 ) -> v1 :: v2)
+                |> (\( x, x2 ) -> x :: x2)
                 |> List.Extra.removeIfIndex
                     (\x ->
                         Dict.Any.member Piano.Model.trackNumberToInt (Piano.Model.TrackNumber x) a.disabledTracks
@@ -74,7 +74,7 @@ viewNotes file notes =
 
         barsSpacing : Float
         barsSpacing =
-            file.tempo |> (\(Midi.TicksPerBeat v2) -> v2) |> Midi.Ticks |> ticksToFloat
+            file.tempo |> (\(Midi.TicksPerBeat x) -> x) |> Midi.Ticks |> ticksToFloat
 
         bars : List (Element msg)
         bars =
@@ -100,7 +100,7 @@ viewNotes file notes =
                 [ width (px (max 8 (round (ticksToFloat b.length))))
                 , height (px noteHeight)
                 , moveRight (ticksToFloat b.time)
-                , moveDown (toFloat (height_ - (((\(Midi.Note v) -> v) b.note - 24) * noteHeight)) - (toFloat noteHeight / 2))
+                , moveDown (toFloat (height_ - (((\(Midi.Note x) -> x) b.note - 24) * noteHeight)) - (toFloat noteHeight / 2))
                 , bgColor (noteToColor b.note)
                 , borderShadow (style.shadow 4)
                 , borderRounded 4
