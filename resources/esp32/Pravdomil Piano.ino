@@ -12,14 +12,16 @@
 auto clockPin = 2;
 auto latchPin = 4;
 auto dataPin = 5;
+auto powerPin = 15;
 
 auto chips = 8;
 
 void setup() {
   pinMode(clockPin, OUTPUT);
   pinMode(latchPin, OUTPUT);
-  pinMode(15, OUTPUT);
-  digitalWrite(15, 1);
+  pinMode(powerPin, OUTPUT);
+
+  digitalWrite(powerPin, 1);
 
   BLEMidiServer.begin("Pravdomil Piano");
 }
