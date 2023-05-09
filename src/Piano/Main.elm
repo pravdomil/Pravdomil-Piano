@@ -10,7 +10,7 @@ import File.Select
 import Json.Decode
 import Midi.Decode
 import Piano.Model
-import Piano.Score
+import Piano.NoteType
 import Piano.Utils.Theme exposing (..)
 import Task
 import Url
@@ -131,7 +131,7 @@ viewBody model =
         [ viewHeader model
         , case model.file of
             Ok b ->
-                Piano.Score.viewFile b
+                Piano.NoteType.viewFile b
 
             Err _ ->
                 none

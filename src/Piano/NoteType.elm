@@ -1,15 +1,9 @@
-module Piano.Score exposing (..)
+module Piano.NoteType exposing (..)
 
-import Dict.Any
-import Element.PravdomilUi exposing (..)
-import List.Extra
 import Midi
-import Piano.Model
-import Piano.Note
-import Piano.Utils.Theme exposing (..)
 
 
-type Note
+type NoteType
     = A
     | Ax
     | B
@@ -24,8 +18,8 @@ type Note
     | Gx
 
 
-midiNoteToNote : Midi.Note -> Note
-midiNoteToNote (Midi.Note a) =
+fromMidiNote : Midi.Note -> NoteType
+fromMidiNote (Midi.Note a) =
     case modBy 12 a of
         1 ->
             Cx
@@ -64,8 +58,8 @@ midiNoteToNote (Midi.Note a) =
             C
 
 
-noteToInterval : Note -> Int
-noteToInterval a =
+toInterval : NoteType -> Int
+toInterval a =
     case a of
         A ->
             0
