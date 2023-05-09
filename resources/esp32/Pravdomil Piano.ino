@@ -30,7 +30,7 @@ void loop() {
   digitalWrite(latchPin, 1);
 
   uint8_t status[chips];
-  for (int i = 0; i < chips; i++) {
+  for (uint8_t i = 0; i < chips; i++) {
     auto value = shiftIn2(dataPin, clockPin);
 
     if (BLEMidiServer.isConnected()) {
