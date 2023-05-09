@@ -4,12 +4,14 @@ import Dict.Any
 import Element.PravdomilUi exposing (..)
 import List.Extra
 import Midi
-import Piano.Model
+import Piano.File
 import Piano.Note
+import Piano.NoteType
+import Piano.TrackNumber
 import Piano.Utils.Theme exposing (..)
 
 
-viewFile : Piano.Model.File -> Element msg
+viewFile : Piano.File.File -> Element msg
 viewFile a =
     let
         tracks : List Midi.Track
@@ -18,7 +20,7 @@ viewFile a =
                 |> (\( x, x2 ) -> x :: x2)
                 |> List.Extra.removeIfIndex
                     (\x ->
-                        Dict.Any.member Piano.Model.trackNumberToInt (Piano.Model.TrackNumber x) a.disabledTracks
+                        Dict.Any.member Piano.TrackNumber.toInt (Piano.TrackNumber.fromInt x) a.disabledTracks
                     )
 
         notes : List Piano.Note.Note
@@ -122,7 +124,7 @@ viewNotes file notes =
 
 noteToColor : Midi.Note -> Color
 noteToColor a =
-    case a |> midiNoteToNote |> noteToInterval of
+    case a |> Piano.NoteType.fromMidiNote |> Piano.NoteType.toInterval of
         0 ->
             rgb255 0xFF 0x00 0x00
 
