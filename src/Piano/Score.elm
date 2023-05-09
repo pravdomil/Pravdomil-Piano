@@ -6,7 +6,7 @@ import List.Extra
 import Midi
 import Piano.Model
 import Piano.Score.Utils
-import Piano.UserInterface exposing (..)
+import Piano.Utils.Theme exposing (..)
 
 
 viewFile : Piano.Model.File -> Element msg

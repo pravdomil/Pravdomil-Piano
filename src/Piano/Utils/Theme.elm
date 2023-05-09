@@ -1,4 +1,4 @@
-module Piano.UserInterface exposing (..)
+module Piano.Utils.Theme exposing (..)
 
 import Element.PravdomilUi.Theme
 import Element.PravdomilUi.Theme.Light

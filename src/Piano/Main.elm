@@ -12,7 +12,7 @@ import Midi.Decode
 import Piano.Model
 import Piano.Score
 import Piano.Translation
-import Piano.UserInterface exposing (..)
+import Piano.Utils.Theme exposing (..)
 import Task
 import Url
 
