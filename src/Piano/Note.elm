@@ -17,7 +17,7 @@ trackToNotes a =
     let
         toComparable : ( Midi.Channel, Midi.Note ) -> ( Int, Int )
         toComparable =
-            Tuple.mapBoth (\(Midi.Channel v) -> v) (\(Midi.Note v) -> v)
+            Tuple.mapBoth (\(Midi.Channel x) -> x) (\(Midi.Note x) -> x)
 
         fn : Midi.Event -> ( Midi.Ticks, OpenNotes, List Note ) -> ( Midi.Ticks, OpenNotes, List Note )
         fn b ( time, open, acc ) =
@@ -68,7 +68,7 @@ trackToNotes a =
     in
     a
         |> List.foldl fn ( Midi.Ticks 0, Dict.Any.empty, [] )
-        |> (\( _, _, v ) -> v)
+        |> (\( _, _, x ) -> x)
 
 
 
