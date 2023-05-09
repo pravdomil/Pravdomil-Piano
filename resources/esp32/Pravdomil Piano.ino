@@ -52,9 +52,8 @@ void loop() {
 
 uint8_t shiftIn2(uint8_t dataPin, uint8_t clockPin) {
   uint8_t value = 0;
-  uint8_t i;
 
-  for (i = 0; i < 8; ++i) {
+  for (uint8_t i = 0; i < 8; i++) {
     value |= digitalRead(dataPin) << i;
 
     digitalWrite(clockPin, LOW);
