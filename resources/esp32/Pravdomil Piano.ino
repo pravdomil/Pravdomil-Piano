@@ -16,6 +16,7 @@ auto powerPin = 15;
 auto chips = 8;
 
 uint8_t status[chips];
+uint8_t temp[chips];
 
 void setup() {
   pinMode(clockPin, OUTPUT);
@@ -32,7 +33,6 @@ void loop() {
     digitalWrite(latchPin, 0);
     digitalWrite(latchPin, 1);
 
-    uint8_t temp[chips];
     for (uint8_t i = 0; i < chips; i++)
       temp[i] = shiftIn();
 
