@@ -7,6 +7,7 @@ import File
 import Piano.File.View
 import Piano.Model
 import Piano.Msg
+import Piano.TrackNumber
 import Piano.Utils.Theme exposing (..)
 
 
@@ -56,16 +57,16 @@ viewHeader model =
                             |> List.indexedMap
                                 (\i _ ->
                                     let
-                                        number : Piano.Model.TrackNumber
+                                        number : Piano.TrackNumber.TrackNumber
                                         number =
-                                            Piano.Model.TrackNumber i
+                                            Piano.TrackNumber.fromInt i
                                     in
                                     inputCheckbox
                                         []
                                         { icon = inputDefaultCheckbox
-                                        , label = labelRight theme [] (text (String.fromInt (Piano.Model.trackNumberToInt number + 1)))
-                                        , checked = b.disabledTracks |> Dict.Any.member Piano.Model.trackNumberToInt number |> not
-                                        , onChange = Piano.Model.ToogleTrack number
+                                        , label = labelRight theme [] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
+                                        , checked = b.disabledTracks |> Dict.Any.member Piano.TrackNumber.toInt number |> not
+                                        , onChange = Piano.Msg.TrackToggleRequested number
                                         }
                                 )
                         )
@@ -75,7 +76,7 @@ viewHeader model =
             , linkWithOnPress theme
                 []
                 { label = text "Select MIDI File"
-                , onPress = Just Piano.Model.SelectFile
+                , onPress = Just Piano.Msg.FileSelectRequested
                 }
             ]
         ]
