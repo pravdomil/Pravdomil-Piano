@@ -73,9 +73,10 @@ viewHeader model =
 
                 Err _ ->
                     none
-            , linkWithOnPress theme
+            , button theme
                 []
                 { label = text "Select MIDI File"
+                , active = False
                 , onPress = Just Piano.Msg.FileSelectRequested
                 }
             ]
