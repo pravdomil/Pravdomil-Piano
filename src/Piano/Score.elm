@@ -5,7 +5,7 @@ import Element.PravdomilUi exposing (..)
 import List.Extra
 import Midi
 import Piano.Model
-import Piano.Score.Utils
+import Piano.Note
 import Piano.Utils.Theme exposing (..)
 
 
@@ -21,9 +21,9 @@ viewFile a =
                         Dict.Any.member Piano.Model.trackNumberToInt (Piano.Model.TrackNumber v) a.disabledTracks
                     )
 
-        notes : List Piano.Score.Utils.Note
+        notes : List Piano.Note.Note
         notes =
-            tracks |> List.concatMap Piano.Score.Utils.trackToNotes
+            tracks |> List.concatMap Piano.Note.trackToNotes
     in
     column
         [ width fill
@@ -36,7 +36,7 @@ viewFile a =
         ]
 
 
-viewNotes : Midi.File -> List Piano.Score.Utils.Note -> Element msg
+viewNotes : Midi.File -> List Piano.Note.Note -> Element msg
 viewNotes file notes =
     let
         numberOfOctaves : Int
@@ -94,7 +94,7 @@ viewNotes file notes =
         ticksToFloat (Midi.Ticks b) =
             toFloat b * 0.06
 
-        viewNote : Piano.Score.Utils.Note -> Element msg
+        viewNote : Piano.Note.Note -> Element msg
         viewNote b =
             el
                 [ width (px (max 8 (round (ticksToFloat b.length))))

@@ -1,4 +1,4 @@
-module Piano.Score.Utils exposing (..)
+module Piano.Note exposing (..)
 
 import Dict.Any
 import Midi
