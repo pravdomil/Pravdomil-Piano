@@ -1,10 +1,10 @@
 module Piano.Model exposing (..)
 
-import File
+import Piano.File
 
 
 type alias Model =
-    { file : Result FileError File.File
+    { file : Result FileError Piano.File.File
     }
 
 
