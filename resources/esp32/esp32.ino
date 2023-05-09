@@ -4,9 +4,9 @@
 #define PLAY(a, b)                                                             \
   if ((status[i] & a) != (temp[i] & a)) {                                      \
     if (temp[i] & a)                                                           \
-      BLEMidiServer.noteOn(0, 64 - b, 127);                                    \
+      BLEMidiServer.noteOn(0, b + 45, 127);                                    \
     else                                                                       \
-      BLEMidiServer.noteOff(0, 64 - b, 127);                                   \
+      BLEMidiServer.noteOff(0, b + 45, 127);                                   \
   }
 
 #define clockPin 2
