@@ -31,7 +31,7 @@ void loop() {
 
   uint8_t status[chips];
   for (int i = 0; i < chips; i++) {
-    auto value = shiftIn2(dataPin, clockPin, LSBFIRST);
+    auto value = shiftIn2(dataPin, clockPin);
 
     if (BLEMidiServer.isConnected()) {
       PLAY(8, 0 + ((chips - 1 - i) * 8));
@@ -50,15 +50,12 @@ void loop() {
   delay(10);
 }
 
-uint8_t shiftIn2(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder) {
+uint8_t shiftIn2(uint8_t dataPin, uint8_t clockPin) {
   uint8_t value = 0;
   uint8_t i;
 
   for (i = 0; i < 8; ++i) {
-    if (bitOrder == LSBFIRST)
-      value |= digitalRead(dataPin) << i;
-    else
-      value |= digitalRead(dataPin) << (7 - i);
+    value |= digitalRead(dataPin) << i;
 
     digitalWrite(clockPin, LOW);
     digitalWrite(clockPin, HIGH);
