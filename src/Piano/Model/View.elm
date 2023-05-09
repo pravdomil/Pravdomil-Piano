@@ -44,7 +44,7 @@ viewHeader model =
             Err b ->
                 case b of
                     Piano.Model.NotLoaded ->
-                        none
+                        text "Pravdomil Piano Score Generator"
 
                     Piano.Model.DecodeError ->
                         text "Cannot read MIDI file."
