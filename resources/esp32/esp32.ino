@@ -9,11 +9,11 @@
       BLEMidiServer.noteOff(0, 64 - b, 127);                                   \
   }
 
-auto clockPin = 2;
-auto latchPin = 4;
-auto dataPin = 5;
-auto powerPin = 15;
-auto chips = 8;
+#define clockPin 2
+#define latchPin 4
+#define dataPin 5
+#define powerPin 15
+#define chips 8
 
 uint8_t status[chips];
 uint8_t temp[chips];
