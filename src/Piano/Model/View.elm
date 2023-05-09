@@ -62,9 +62,10 @@ viewHeader model =
                                             Piano.TrackNumber.fromInt i
                                     in
                                     inputCheckbox
+                                        theme
                                         []
-                                        { icon = inputDefaultCheckbox
-                                        , label = labelRight theme [] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
+                                        { icon = inputCheckboxIcon theme
+                                        , label = text (String.fromInt (Piano.TrackNumber.toInt number + 1))
                                         , checked = b.disabledTracks |> Dict.Any.member Piano.TrackNumber.toInt number |> not
                                         , onChange = Piano.Msg.TrackToggleRequested number
                                         }
