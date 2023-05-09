@@ -16,8 +16,6 @@ auto dataPin = 5;
 auto chips = 8;
 
 void setup() {
-  Serial.begin(9600);
-
   pinMode(clockPin, OUTPUT);
   pinMode(latchPin, OUTPUT);
   pinMode(15, OUTPUT);
@@ -34,15 +32,6 @@ void loop() {
   for (int i = 0; i < chips; i++) {
     auto value = shiftIn2(dataPin, clockPin, LSBFIRST);
 
-    Serial.print(value & 8 ? 0 : 1);
-    Serial.print(value & 1 ? 0 : 1);
-    Serial.print(value & 4 ? 0 : 1);
-    Serial.print(value & 2 ? 0 : 1);
-    Serial.print(value & 64 ? 0 : 1);
-    Serial.print(value & 32 ? 0 : 1);
-    Serial.print(value & 128 ? 0 : 1);
-    Serial.print(value & 16 ? 0 : 1);
-
     if (BLEMidiServer.isConnected()) {
       PLAY(8, 0 + ((chips - 1 - i) * 8));
       PLAY(1, 1 + ((chips - 1 - i) * 8));
@@ -56,9 +45,6 @@ void loop() {
 
     status[i] = value;
   }
-
-  Serial.println();
-  Serial.flush();
 
   delay(10);
 }
