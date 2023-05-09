@@ -78,7 +78,7 @@ update msg model =
                     c
                         |> Midi.Decode.file
                         |> Result.fromMaybe Piano.Model.DecodeError
-                        |> Result.map (\v -> Piano.Model.File b v Dict.Any.empty)
+                        |> Result.map (\x -> Piano.Model.File b x Dict.Any.empty)
               }
             , Cmd.none
             )
@@ -88,14 +88,14 @@ update msg model =
                 | file =
                     model.file
                         |> Result.map
-                            (\v ->
-                                { v
+                            (\x ->
+                                { x
                                     | disabledTracks =
                                         if not c then
-                                            Dict.Any.insert Piano.Model.trackNumberToInt b () v.disabledTracks
+                                            Dict.Any.insert Piano.Model.trackNumberToInt b () x.disabledTracks
 
                                         else
-                                            Dict.Any.remove Piano.Model.trackNumberToInt b v.disabledTracks
+                                            Dict.Any.remove Piano.Model.trackNumberToInt b x.disabledTracks
                                 }
                             )
               }
