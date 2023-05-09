@@ -112,7 +112,7 @@ viewNotes file notes =
     el
         ([ width (px width_)
          , height (px height_)
-         , bgColor style.black0
+         , bgColor style.back100
          , borderShadow (style.shadow 8)
          ]
             ++ (bars |> List.map inFront)
