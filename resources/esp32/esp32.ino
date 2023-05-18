@@ -31,7 +31,9 @@ void setup() {
 void loop() {
   if (BLEMidiServer.isConnected()) {
     digitalWrite(latchPin, 0);
+    delayMicroseconds(1);
     digitalWrite(latchPin, 1);
+    delayMicroseconds(1);
 
     for (uint8_t i = 0; i < chips; i++)
       temp[i] = shiftIn();
@@ -61,7 +63,9 @@ uint8_t shiftIn() {
     value |= digitalRead(dataPin) << i;
 
     digitalWrite(clockPin, LOW);
+    delayMicroseconds(1);
     digitalWrite(clockPin, HIGH);
+    delayMicroseconds(1);
   }
 
   return value;
