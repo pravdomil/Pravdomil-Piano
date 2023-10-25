@@ -13,11 +13,10 @@ import Piano.Utils.Theme exposing (..)
 
 view : Piano.Model.Model -> Browser.Document Piano.Msg.Msg
 view model =
-    { title = "Pravdomil Piano"
-    , body =
+    Browser.Document
+        "Pravdomil Piano Score Generator"
         [ Element.PravdomilUi.layout theme [ width fill, height (px 800) ] (viewBody model)
         ]
-    }
 
 
 viewBody : Piano.Model.Model -> Element Piano.Msg.Msg
