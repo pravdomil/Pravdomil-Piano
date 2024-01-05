@@ -39,7 +39,7 @@ trackToNotes a =
                         Just c ->
                             ( nextTime
                             , Dict.Any.remove toComparable ( channel, note ) open
-                            , (::) (Note channel note c (ticksMinus nextTime c)) acc
+                            , Note channel note c (ticksMinus nextTime c) :: acc
                             )
 
                         Nothing ->
