@@ -24,12 +24,12 @@ trackToNotes a =
             let
                 nextTime : Midi.Ticks
                 nextTime =
-                    time |> ticksPlus b.delta
+                    ticksPlus b.delta time
 
                 noteOn : Midi.Channel -> Midi.Note -> ( Midi.Ticks, Dict.Any.Dict ( Midi.Channel, Midi.Note ) Midi.Ticks, List Note )
                 noteOn channel note =
                     ( nextTime
-                    , open |> Dict.Any.insert toComparable ( channel, note ) nextTime
+                    , Dict.Any.insert toComparable ( channel, note ) nextTime open
                     , acc
                     )
 
@@ -38,8 +38,8 @@ trackToNotes a =
                     case Dict.Any.get toComparable ( channel, note ) open of
                         Just c ->
                             ( nextTime
-                            , open |> Dict.Any.remove toComparable ( channel, note )
-                            , acc |> (::) (Note channel note c (ticksMinus nextTime c))
+                            , Dict.Any.remove toComparable ( channel, note ) open
+                            , (::) (Note channel note c (ticksMinus nextTime c)) acc
                             )
 
                         Nothing ->
@@ -66,8 +66,7 @@ trackToNotes a =
                 _ ->
                     default
     in
-    a
-        |> List.foldl fn ( Midi.Ticks 0, Dict.Any.empty, [] )
+    List.foldl fn ( Midi.Ticks 0, Dict.Any.empty, [] ) a
         |> (\( _, _, x ) -> x)
 
 
