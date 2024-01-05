@@ -3,12 +3,14 @@ module Piano.Model.View exposing (..)
 import Browser
 import Dict.Any
 import Element exposing (..)
+import Element.Font
 import Element.Input
 import File
 import Piano.File.View
 import Piano.Model
 import Piano.Msg
 import Piano.TrackNumber
+import Piano.Utils.Theme exposing (..)
 
 
 view : Piano.Model.Model -> Browser.Document Piano.Msg.Msg
@@ -71,7 +73,7 @@ viewHeader model =
             Err _ ->
                 none
         , Element.Input.button
-            []
+            [ Element.Font.color blue ]
             { label = text "Select MIDI File"
             , onPress = Just Piano.Msg.FileSelectRequested
             }
