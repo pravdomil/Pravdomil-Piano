@@ -72,7 +72,7 @@ viewHeader model =
 
             Err _ ->
                 none
-        , button theme
+        , Element.Input.button
             []
             { label = text "Select MIDI File"
             , active = False
