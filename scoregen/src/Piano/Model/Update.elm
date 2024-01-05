@@ -3,7 +3,9 @@ module Piano.Model.Update exposing (..)
 import Dict.Any
 import File
 import File.Select
+import JavaScript.Decoder
 import Json.Decode
+import Midi
 import Midi.Decode
 import Piano.File
 import Piano.Model
@@ -70,8 +72,20 @@ update msg =
         Piano.Msg.WebMidiInitialized _ ->
             Platform.Extra.noOperation
 
-        Piano.Msg.WebMidiMessageReceived _ ->
-            Platform.Extra.noOperation
+        Piano.Msg.WebMidiMessageReceived a ->
+            case
+                Json.Decode.decodeValue JavaScript.Decoder.bytes a
+                    |> Result.toMaybe
+                    |> Maybe.andThen Midi.Decode.eventType
+            of
+                Just (Midi.NoteOn _ b _) ->
+                    \x -> ( { x | activeNotes = Dict.Any.insert (\(Midi.Note x2) -> x2) b () x.activeNotes }, Cmd.none )
+
+                Just (Midi.NoteOff _ b _) ->
+                    \x -> ( { x | activeNotes = Dict.Any.remove (\(Midi.Note x2) -> x2) b x.activeNotes }, Cmd.none )
+
+                _ ->
+                    Platform.Extra.noOperation
 
 
 
