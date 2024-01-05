@@ -105,9 +105,9 @@ viewNotes file notes =
                 , height (px noteHeight)
                 , moveRight (ticksToFloat b.time)
                 , moveDown (toFloat (height_ - (((\(Midi.Note x) -> x) b.note - 21) * noteHeight)) - (toFloat noteHeight / 2))
-                , bgColor (noteToColor b.note)
-                , borderShadow (style.shadow 4)
-                , borderRounded 4
+                , Element.Background.color (noteToColor b.note)
+                , Element.Border.shadow (shadow 4)
+                , Element.Border.rounded 4
                 ]
                 none
     in
