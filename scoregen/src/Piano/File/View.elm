@@ -108,7 +108,8 @@ viewNotes file notes =
          , height (px height_)
          , centerX
          , Element.Background.color white
-         , Element.Border.shadow (shadow 8)
+         , Element.Border.shadow (shadow 80)
+         , Element.Border.rounded 16
          ]
             ++ List.map inFront bars
             ++ List.map inFront octaveLines
