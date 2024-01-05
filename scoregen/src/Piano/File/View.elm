@@ -114,8 +114,8 @@ viewNotes file notes =
     el
         ([ width (px width_)
          , height (px height_)
-         , bgColor style.back100
-         , borderShadow (style.shadow 8)
+         , Element.Background.color white
+         , Element.Border.shadow (shadow 8)
          ]
             ++ (bars |> List.map inFront)
             ++ (octaveLines |> List.map inFront)
