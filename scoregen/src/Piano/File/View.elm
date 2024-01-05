@@ -71,7 +71,7 @@ viewNotes file notes =
                             [ width (px width_)
                             , height (px 1)
                             , moveDown (toFloat (noteHeight * 12 * x))
-                            , bgColor style.back60
+                            , Element.Background.color darkGray
                             ]
                             none
                     )
@@ -89,7 +89,7 @@ viewNotes file notes =
                             [ width (px 1)
                             , height (px height_)
                             , moveRight (barsSpacing * toFloat x)
-                            , bgColor style.back80
+                            , Element.Background.color lightGray
                             ]
                             none
                     )
