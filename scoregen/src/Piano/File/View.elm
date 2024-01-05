@@ -54,7 +54,7 @@ viewNotes file notes =
 
         height_ : Int
         height_ =
-            noteThickness * 12 * numberOfOctaves
+            32 + ceiling (List.foldl (\x acc -> max (ticksToFloat x.time + ticksToFloat x.length) acc) 0 notes)
 
         octaveLines : List (Element msg)
         octaveLines =
