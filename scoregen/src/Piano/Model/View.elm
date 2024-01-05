@@ -30,7 +30,7 @@ viewBody model =
         , viewHeader model
         , case model.file of
             Ok b ->
-                Piano.File.View.viewFile b
+                Piano.File.View.viewFile model.activeNotes b
 
             Err _ ->
                 none
