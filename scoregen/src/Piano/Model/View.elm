@@ -50,23 +50,22 @@ viewHeader model =
         , case model.file of
             Ok b ->
                 row [ spacing 8 ]
-                    (b.midi.tracks
-                        |> (\( x, x2 ) -> x :: x2)
-                        |> List.indexedMap
-                            (\i _ ->
-                                let
-                                    number : Piano.TrackNumber.TrackNumber
-                                    number =
-                                        Piano.TrackNumber.fromInt i
-                                in
-                                Element.Input.checkbox
-                                    []
-                                    { icon = Element.Input.defaultCheckbox
-                                    , label = Element.Input.labelLeft [] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
-                                    , checked = b.disabledTracks |> Dict.Any.member Piano.TrackNumber.toInt number |> not
-                                    , onChange = Piano.Msg.TrackToggleRequested number
-                                    }
-                            )
+                    (List.indexedMap
+                        (\i _ ->
+                            let
+                                number : Piano.TrackNumber.TrackNumber
+                                number =
+                                    Piano.TrackNumber.fromInt i
+                            in
+                            Element.Input.checkbox
+                                []
+                                { icon = Element.Input.defaultCheckbox
+                                , label = Element.Input.labelLeft [] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
+                                , checked = not (Dict.Any.member Piano.TrackNumber.toInt number b.disabledTracks)
+                                , onChange = Piano.Msg.TrackToggleRequested number
+                                }
+                        )
+                        ((\( x, x2 ) -> x :: x2) b.midi.tracks)
                     )
 
             Err _ ->
