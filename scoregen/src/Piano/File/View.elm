@@ -50,7 +50,7 @@ viewNotes file notes =
 
         width_ : Int
         width_ =
-            32 + ceiling (List.foldl (\x acc -> max (ticksToFloat x.time + ticksToFloat x.length) acc) 0 notes)
+            noteThickness * 12 * numberOfOctaves
 
         height_ : Int
         height_ =
