@@ -28,10 +28,8 @@ viewFile a =
     in
     column
         [ width fill
-        , height fill
         , spacing 8
         , paddingEach (EdgesXY 0 0 8 16)
-        , scrollbars
         ]
         [ viewNotes a.midi notes
         ]
@@ -108,6 +106,7 @@ viewNotes file notes =
     el
         ([ width (px width_)
          , height (px height_)
+         , centerX
          , Element.Background.color white
          , Element.Border.shadow (shadow 8)
          ]
