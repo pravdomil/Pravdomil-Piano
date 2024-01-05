@@ -1,7 +1,9 @@
 module Piano.File.View exposing (..)
 
 import Dict.Any
-import Element.PravdomilUi exposing (..)
+import Element exposing (..)
+import Element.Background
+import Element.Border
 import List.Extra
 import Midi
 import Piano.File
