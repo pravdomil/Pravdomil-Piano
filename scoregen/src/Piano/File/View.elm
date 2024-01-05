@@ -33,7 +33,7 @@ viewFile a =
         [ width fill
         , height fill
         , spacing 8
-        , paddingEach 0 0 8 16
+        , paddingEach (EdgesXY 0 0 8 16)
         , scrollbars
         ]
         [ viewNotes a.midi notes
