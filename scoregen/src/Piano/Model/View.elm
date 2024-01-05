@@ -52,7 +52,7 @@ viewHeader model =
                         text "Cannot read MIDI file."
         , case model.file of
             Ok b ->
-                row [ spacing 8, height fill ]
+                row [ spacing 16, height fill ]
                     (List.indexedMap
                         (\i _ ->
                             let
