@@ -95,10 +95,10 @@ viewNotes file notes =
         viewNote : Piano.Note.Note -> Element msg
         viewNote b =
             el
-                [ width (px (max 8 (round (ticksToFloat b.length))))
-                , height (px noteThickness)
-                , moveRight (ticksToFloat b.time)
-                , moveDown (toFloat (height_ - (((\(Midi.Note x) -> x) b.note - 21) * noteThickness)) - (toFloat noteThickness / 2))
+                [ width (px noteThickness)
+                , height (px (max 8 (round (ticksToFloat b.length))))
+                , moveRight (toFloat (((\(Midi.Note x) -> x) b.note - 26) * noteThickness) - (toFloat noteThickness / 2))
+                , moveDown (ticksToFloat b.time)
                 , Element.Background.color (noteToColor b.note)
                 , Element.Border.shadow (shadow 4)
                 , Element.Border.rounded 4
