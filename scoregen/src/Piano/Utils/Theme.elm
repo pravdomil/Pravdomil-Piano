@@ -42,6 +42,18 @@ blue =
 --
 
 
+shadow a =
+    { color = fromRgb ((\x -> { x | alpha = 0.4 }) (toRgb black))
+    , offset = ( 0, a / 3 )
+    , blur = a
+    , size = 0
+    }
+
+
+
+--
+
+
 page a =
     Element.Font.family
         [ Element.Font.typeface "system-ui"
