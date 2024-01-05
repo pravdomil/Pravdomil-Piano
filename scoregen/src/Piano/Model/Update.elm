@@ -50,21 +50,21 @@ update msg =
                 )
 
         Piano.Msg.TrackToggleRequested b c ->
-            \model ->
-                ( { model
+            \x ->
+                ( { x
                     | file =
                         Result.map
-                            (\x ->
-                                { x
+                            (\x2 ->
+                                { x2
                                     | disabledTracks =
                                         if not c then
-                                            Dict.Any.insert Piano.TrackNumber.toInt b () x.disabledTracks
+                                            Dict.Any.insert Piano.TrackNumber.toInt b () x2.disabledTracks
 
                                         else
-                                            Dict.Any.remove Piano.TrackNumber.toInt b x.disabledTracks
+                                            Dict.Any.remove Piano.TrackNumber.toInt b x2.disabledTracks
                                 }
                             )
-                            model.file
+                            x.file
                   }
                 , Cmd.none
                 )
