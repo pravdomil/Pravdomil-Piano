@@ -36,7 +36,7 @@ update msg =
             \x -> ( x, File.Select.file [ "audio/midi" ] Piano.Msg.FileSelected )
 
         Piano.Msg.FileSelected b ->
-            \model -> ( model, Task.perform (Piano.Msg.FileLoaded b) (File.toBytes b) )
+            \x -> ( x, Task.perform (Piano.Msg.FileLoaded b) (File.toBytes b) )
 
         Piano.Msg.FileLoaded b c ->
             \model ->
