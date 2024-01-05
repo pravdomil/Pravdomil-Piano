@@ -75,7 +75,6 @@ viewHeader model =
         , Element.Input.button
             []
             { label = text "Select MIDI File"
-            , active = False
             , onPress = Just Piano.Msg.FileSelectRequested
             }
         ]
