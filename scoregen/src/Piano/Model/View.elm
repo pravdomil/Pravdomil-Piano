@@ -61,7 +61,7 @@ viewHeader model =
                                     Piano.TrackNumber.fromInt i
                             in
                             Element.Input.checkbox
-                                (clickable [ height fill ])
+                                (clickable [ paddingXY 8 0, height fill ])
                                 { icon = Element.Input.defaultCheckbox
                                 , label = Element.Input.labelRight [ centerY ] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
                                 , checked = not (Dict.Any.member Piano.TrackNumber.toInt number b.disabledTracks)
