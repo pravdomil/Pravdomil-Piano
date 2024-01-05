@@ -15,7 +15,7 @@ view : Piano.Model.Model -> Browser.Document Piano.Msg.Msg
 view model =
     Browser.Document
         "Pravdomil Piano Score Generator"
-        [ Element.PravdomilUi.layout theme [ width fill, height (px 800) ] (viewBody model)
+        [ layout [ width fill, height (px 800) ] (viewBody model)
         ]
 
 
