@@ -18,6 +18,7 @@ init : Json.Decode.Value -> ( Piano.Model.Model, Cmd Piano.Msg.Msg )
 init _ =
     ( Piano.Model.Model
         (Err Piano.Model.NotLoaded)
+        Dict.Any.empty
     , Task.attempt Piano.Msg.WebMidiInitialized WebMidi.init
     )
 
