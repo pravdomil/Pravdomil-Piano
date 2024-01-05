@@ -44,8 +44,8 @@ viewNotes file notes =
         numberOfOctaves =
             6
 
-        noteHeight : Int
-        noteHeight =
+        noteThickness : Int
+        noteThickness =
             8
 
         width_ : Int
@@ -54,7 +54,7 @@ viewNotes file notes =
 
         height_ : Int
         height_ =
-            noteHeight * 12 * numberOfOctaves
+            noteThickness * 12 * numberOfOctaves
 
         octaveLines : List (Element msg)
         octaveLines =
@@ -63,7 +63,7 @@ viewNotes file notes =
                     el
                         [ width (px width_)
                         , height (px 1)
-                        , moveDown (toFloat (noteHeight * 12 * x))
+                        , moveDown (toFloat (noteThickness * 12 * x))
                         , Element.Background.color darkGray
                         ]
                         none
@@ -96,9 +96,9 @@ viewNotes file notes =
         viewNote b =
             el
                 [ width (px (max 8 (round (ticksToFloat b.length))))
-                , height (px noteHeight)
+                , height (px noteThickness)
                 , moveRight (ticksToFloat b.time)
-                , moveDown (toFloat (height_ - (((\(Midi.Note x) -> x) b.note - 21) * noteHeight)) - (toFloat noteHeight / 2))
+                , moveDown (toFloat (height_ - (((\(Midi.Note x) -> x) b.note - 21) * noteThickness)) - (toFloat noteThickness / 2))
                 , Element.Background.color (noteToColor b.note)
                 , Element.Border.shadow (shadow 4)
                 , Element.Border.rounded 4
