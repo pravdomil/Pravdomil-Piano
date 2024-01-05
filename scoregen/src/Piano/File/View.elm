@@ -86,7 +86,7 @@ viewNotes file notes =
                         ]
                         none
                 )
-                (List.range 1 (ceiling (toFloat width_ / barsSpacing)))
+                (List.range 1 (ceiling (toFloat height_ / barsSpacing)))
 
         ticksToFloat : Midi.Ticks -> Float
         ticksToFloat (Midi.Ticks b) =
