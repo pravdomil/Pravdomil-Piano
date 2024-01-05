@@ -13,8 +13,8 @@ import Piano.TrackNumber
 import Piano.Utils.Theme exposing (..)
 
 
-viewFile : Piano.File.File -> Element msg
-viewFile a =
+viewFile : Dict.Any.Dict Midi.Note () -> Piano.File.File -> Element msg
+viewFile activeNotes a =
     let
         tracks : List Midi.Track
         tracks =
@@ -31,7 +31,7 @@ viewFile a =
         , spacing 8
         , paddingEach (EdgesXY 0 0 8 16)
         ]
-        [ viewNotes a.midi notes
+        [ viewNotes activeNotes a.midi notes
         ]
 
 
