@@ -59,8 +59,7 @@ viewHeader model =
                                     number =
                                         Piano.TrackNumber.fromInt i
                                 in
-                                inputCheckbox
-                                    theme
+                                Element.Input.checkbox
                                     []
                                     { icon = inputCheckboxIcon theme
                                     , label = text (String.fromInt (Piano.TrackNumber.toInt number + 1))
