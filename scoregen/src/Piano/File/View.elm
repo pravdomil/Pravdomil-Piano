@@ -114,6 +114,7 @@ viewNotes activeNotes file notes =
          ]
             ++ List.map inFront bars
             ++ List.map inFront octaveLines
+            ++ List.map inFront activeNotes_
             ++ List.map (viewNote >> inFront) notes
         )
         none
