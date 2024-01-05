@@ -86,7 +86,7 @@ heading3 a =
     Element.Region.heading 3 :: Element.Font.size 24 :: a
 
 
-link_ a =
+clickable a =
     Element.Font.color blue
         :: Element.Border.rounded 4
         :: focused
