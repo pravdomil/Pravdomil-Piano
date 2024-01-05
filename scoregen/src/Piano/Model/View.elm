@@ -52,7 +52,7 @@ viewHeader model =
                         text "Cannot read MIDI file."
         , case model.file of
             Ok b ->
-                row [ spacing 8 ]
+                row [ spacing 8, height fill ]
                     (List.indexedMap
                         (\i _ ->
                             let
@@ -61,7 +61,7 @@ viewHeader model =
                                     Piano.TrackNumber.fromInt i
                             in
                             Element.Input.checkbox
-                                []
+                                (clickable [ height fill ])
                                 { icon = Element.Input.defaultCheckbox
                                 , label = Element.Input.labelRight [] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
                                 , checked = not (Dict.Any.member Piano.TrackNumber.toInt number b.disabledTracks)
