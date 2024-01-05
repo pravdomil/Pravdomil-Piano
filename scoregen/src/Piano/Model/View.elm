@@ -74,7 +74,7 @@ viewHeader model =
             Err _ ->
                 none
         , Element.Input.button
-            [ Element.Font.color blue ]
+            (clickable [ height fill ])
             { label = text "Select MIDI File"
             , onPress = Just Piano.Msg.FileSelectRequested
             }
