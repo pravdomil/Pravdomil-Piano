@@ -39,12 +39,12 @@ update msg =
             \x -> ( x, Task.perform (Piano.Msg.FileLoaded b) (File.toBytes b) )
 
         Piano.Msg.FileLoaded b c ->
-            \model ->
-                ( { model
+            \x ->
+                ( { x
                     | file =
                         Midi.Decode.file c
                             |> Result.fromMaybe Piano.Model.DecodeError
-                            |> Result.map (\x -> Piano.File.File b x Dict.Any.empty)
+                            |> Result.map (\x2 -> Piano.File.File b x2 Dict.Any.empty)
                   }
                 , Cmd.none
                 )
