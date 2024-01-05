@@ -86,6 +86,22 @@ viewNotes activeNotes file notes =
                 )
                 (List.range 1 (floor (toFloat height_ / barsSpacing)))
 
+        activeNotes_ : List (Element msg)
+        activeNotes_ =
+            List.map
+                (\x ->
+                    el
+                        [ width (px noteThickness)
+                        , height (px height_)
+                        , moveRight (toFloat (((\(Midi.Note x2) -> x2) x - 26) * noteThickness) - (toFloat noteThickness / 2))
+                        , Element.Background.color (noteToColor x)
+                        , Element.Border.shadow (shadow 4)
+                        , alpha 0.5
+                        ]
+                        none
+                )
+                (Dict.Any.keys activeNotes)
+
         ticksToFloat : Midi.Ticks -> Float
         ticksToFloat (Midi.Ticks b) =
             toFloat b * 0.06
