@@ -110,6 +110,7 @@ viewNotes file notes =
          , Element.Background.color white
          , Element.Border.shadow (shadow 80)
          , Element.Border.rounded 16
+         , clip
          ]
             ++ List.map inFront bars
             ++ List.map inFront octaveLines
