@@ -18,6 +18,22 @@ type alias EdgesXY =
 --
 
 
+white =
+    rgb 1 1 1
+
+
+black =
+    rgb 0 0 0
+
+
+lightGray =
+    rgb 0.9 0.9 0.9
+
+
+darkGray =
+    rgb 0.8 0.8 0.8
+
+
 blue =
     rgb 0 0 1
 
