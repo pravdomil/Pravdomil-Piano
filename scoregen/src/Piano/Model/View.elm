@@ -18,13 +18,13 @@ view : Piano.Model.Model -> Browser.Document Piano.Msg.Msg
 view model =
     Browser.Document
         "Pravdomil Piano Score Generator"
-        [ layout [ width fill, height (px 800), Element.Font.size 16, Element.Background.color lightGray ] (viewBody model)
+        [ layout [ width fill, Element.Font.size 16, Element.Background.color lightGray ] (viewBody model)
         ]
 
 
 viewBody : Piano.Model.Model -> Element Piano.Msg.Msg
 viewBody model =
-    column [ width fill, height fill ]
+    column [ width fill ]
         [ el [ height (px 8) ] none
         , viewHeader model
         , case model.file of
