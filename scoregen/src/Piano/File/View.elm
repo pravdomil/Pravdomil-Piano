@@ -25,7 +25,7 @@ viewFile a =
 
         notes : List Piano.Note.Note
         notes =
-            tracks |> List.concatMap Piano.Note.trackToNotes
+            List.concatMap Piano.Note.trackToNotes tracks
     in
     column
         [ width fill
