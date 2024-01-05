@@ -18,12 +18,9 @@ viewFile a =
     let
         tracks : List Midi.Track
         tracks =
-            a.midi.tracks
-                |> (\( x, x2 ) -> x :: x2)
-                |> List.Extra.removeIfIndex
-                    (\x ->
-                        Dict.Any.member Piano.TrackNumber.toInt (Piano.TrackNumber.fromInt x) a.disabledTracks
-                    )
+            List.Extra.removeIfIndex
+                (\x -> Dict.Any.member Piano.TrackNumber.toInt (Piano.TrackNumber.fromInt x) a.disabledTracks)
+                ((\( x, x2 ) -> x :: x2) a.midi.tracks)
 
         notes : List Piano.Note.Note
         notes =
@@ -53,10 +50,7 @@ viewNotes file notes =
 
         width_ : Int
         width_ =
-            notes
-                |> List.foldl (\x acc -> max (ticksToFloat x.time + ticksToFloat x.length) acc) 0
-                |> ceiling
-                |> (+) 32
+            (+) 32 (ceiling (List.foldl (\x acc -> max (ticksToFloat x.time + ticksToFloat x.length) acc) 0 notes))
 
         height_ : Int
         height_ =
@@ -64,35 +58,35 @@ viewNotes file notes =
 
         octaveLines : List (Element msg)
         octaveLines =
-            List.range 1 (numberOfOctaves - 1)
-                |> List.map
-                    (\x ->
-                        el
-                            [ width (px width_)
-                            , height (px 1)
-                            , moveDown (toFloat (noteHeight * 12 * x))
-                            , Element.Background.color darkGray
-                            ]
-                            none
-                    )
+            List.map
+                (\x ->
+                    el
+                        [ width (px width_)
+                        , height (px 1)
+                        , moveDown (toFloat (noteHeight * 12 * x))
+                        , Element.Background.color darkGray
+                        ]
+                        none
+                )
+                (List.range 1 (numberOfOctaves - 1))
 
         barsSpacing : Float
         barsSpacing =
-            file.tempo |> (\(Midi.TicksPerBeat x) -> x) |> Midi.Ticks |> ticksToFloat
+            ticksToFloat (Midi.Ticks ((\(Midi.TicksPerBeat x) -> x) file.tempo))
 
         bars : List (Element msg)
         bars =
-            List.range 1 (ceiling (toFloat width_ / barsSpacing))
-                |> List.map
-                    (\x ->
-                        el
-                            [ width (px 1)
-                            , height (px height_)
-                            , moveRight (barsSpacing * toFloat x)
-                            , Element.Background.color lightGray
-                            ]
-                            none
-                    )
+            List.map
+                (\x ->
+                    el
+                        [ width (px 1)
+                        , height (px height_)
+                        , moveRight (barsSpacing * toFloat x)
+                        , Element.Background.color lightGray
+                        ]
+                        none
+                )
+                (List.range 1 (ceiling (toFloat width_ / barsSpacing)))
 
         ticksToFloat : Midi.Ticks -> Float
         ticksToFloat (Midi.Ticks b) =
@@ -117,16 +111,16 @@ viewNotes file notes =
          , Element.Background.color white
          , Element.Border.shadow (shadow 8)
          ]
-            ++ (bars |> List.map inFront)
-            ++ (octaveLines |> List.map inFront)
-            ++ (notes |> List.map (viewNote >> inFront))
+            ++ List.map inFront bars
+            ++ List.map inFront octaveLines
+            ++ List.map (viewNote >> inFront) notes
         )
         none
 
 
 noteToColor : Midi.Note -> Color
 noteToColor a =
-    case a |> Piano.NoteType.fromMidiNote |> Piano.NoteType.toInterval of
+    case Piano.NoteType.toInterval (Piano.NoteType.fromMidiNote a) of
         0 ->
             rgb255 0xFF 0x00 0x00
 
