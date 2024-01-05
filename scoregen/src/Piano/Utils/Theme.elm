@@ -43,7 +43,7 @@ blue =
 
 
 shadow a =
-    { color = fromRgb ((\x -> { x | alpha = 0.4 }) (toRgb black))
+    { color = fromRgb ((\x -> { x | alpha = 0.2 }) (toRgb black))
     , offset = ( 0, a / 3 )
     , blur = a
     , size = 0
