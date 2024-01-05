@@ -79,9 +79,9 @@ viewNotes file notes =
             List.map
                 (\x ->
                     el
-                        [ width (px 1)
-                        , height (px height_)
-                        , moveRight (barsSpacing * toFloat x)
+                        [ width (px width_)
+                        , height (px 1)
+                        , moveDown (barsSpacing * toFloat x)
                         , Element.Background.color lightGray
                         ]
                         none
