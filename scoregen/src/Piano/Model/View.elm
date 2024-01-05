@@ -3,10 +3,10 @@ module Piano.Model.View exposing (..)
 import Browser
 import Dict.Any
 import Element exposing (..)
-import Element.Background
 import Element.Font
 import Element.Input
 import File
+import Html
 import Piano.File.View
 import Piano.Model
 import Piano.Msg
@@ -18,7 +18,8 @@ view : Piano.Model.Model -> Browser.Document Piano.Msg.Msg
 view model =
     Browser.Document
         "Pravdomil Piano Score Generator"
-        [ layout [ width fill, Element.Font.size 16, Element.Background.color lightGray ] (viewBody model)
+        [ layout [ width fill, Element.Font.size 16 ] (viewBody model)
+        , Html.node "style" [] [ Html.text "body{background-color:rgb(230,230,230)}" ]
         ]
 
 
