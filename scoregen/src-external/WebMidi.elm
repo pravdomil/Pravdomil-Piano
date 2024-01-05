@@ -11,7 +11,7 @@ init =
     JavaScript.run
         """
 navigator.requestMIDIAccess().then(a => {
-  a.inputs.forEach(b => { b.onmidimessage = c => { scope.ports.webMidi.send(c) } })
+  a.inputs.forEach(b => { b.onmidimessage = c => { scope.ports.webMidi.send(c.data.buffer) } })
 })
 """
         Json.Encode.null
