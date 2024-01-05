@@ -35,8 +35,8 @@ viewFile activeNotes a =
         ]
 
 
-viewNotes : Midi.File -> List Piano.Note.Note -> Element msg
-viewNotes file notes =
+viewNotes : Dict.Any.Dict Midi.Note () -> Midi.File -> List Piano.Note.Note -> Element msg
+viewNotes activeNotes file notes =
     let
         numberOfOctaves : Int
         numberOfOctaves =
