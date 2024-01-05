@@ -37,7 +37,7 @@ viewBody model =
 
 viewHeader : Piano.Model.Model -> Element Piano.Msg.Msg
 viewHeader model =
-    row [ spacing 8, centerX ]
+    row [ spacing 8, centerX, height (px 40) ]
         [ case model.file of
             Ok b ->
                 text (File.name b.file)
