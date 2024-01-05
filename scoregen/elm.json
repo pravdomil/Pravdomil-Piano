@@ -3,7 +3,6 @@
     "source-directories": [
         "src",
         "node_modules/elm-midi/src",
-        "node_modules/pravdomil-ui/src",
         "node_modules/elm-utils/src"
     ],
     "elm-version": "0.19.1",
