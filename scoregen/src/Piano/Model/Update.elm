@@ -9,14 +9,16 @@ import Piano.File
 import Piano.Model
 import Piano.Msg
 import Piano.TrackNumber
+import Platform.Extra
 import Task
+import WebMidi
 
 
 init : Json.Decode.Value -> ( Piano.Model.Model, Cmd Piano.Msg.Msg )
 init _ =
     ( Piano.Model.Model
         (Err Piano.Model.NotLoaded)
-    , Cmd.none
+    , Task.attempt Piano.Msg.WebMidiInitialized WebMidi.init
     )
 
 
@@ -64,6 +66,12 @@ update msg =
                 , Cmd.none
                 )
 
+        Piano.Msg.WebMidiInitialized _ ->
+            Platform.Extra.noOperation
+
+        Piano.Msg.WebMidiMessageReceived _ ->
+            Platform.Extra.noOperation
+
 
 
 --
@@ -71,4 +79,4 @@ update msg =
 
 subscriptions : Piano.Model.Model -> Sub Piano.Msg.Msg
 subscriptions _ =
-    Sub.none
+    WebMidi.webMidi Piano.Msg.WebMidiMessageReceived
