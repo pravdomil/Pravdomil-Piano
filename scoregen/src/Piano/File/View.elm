@@ -38,14 +38,6 @@ viewFile activeNotes a =
 viewNotes : Dict.Any.Dict Midi.Note () -> Midi.File -> List Piano.Note.Note -> Element msg
 viewNotes activeNotes file notes =
     let
-        numberOfOctaves : Int
-        numberOfOctaves =
-            6
-
-        noteThickness : Int
-        noteThickness =
-            8
-
         width_ : Int
         width_ =
             noteThickness * 12 * numberOfOctaves
@@ -177,3 +169,17 @@ noteToColor a =
 
         _ ->
             rgb255 0x00 0x00 0x00
+
+
+
+--
+
+
+numberOfOctaves : Int
+numberOfOctaves =
+    6
+
+
+noteThickness : Int
+noteThickness =
+    8
