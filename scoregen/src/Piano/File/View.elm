@@ -4,6 +4,7 @@ import Dict.Any
 import Element exposing (..)
 import Element.Background
 import Element.Border
+import Element.Font
 import List.Extra
 import Midi
 import Piano.File
@@ -31,8 +32,80 @@ viewFile activeNotes a =
         , spacing 8
         , paddingEach (EdgesXY 0 0 8 16)
         ]
-        [ viewNotes activeNotes a.midi notes
+        [ viewScale notes
+        , viewNotes activeNotes a.midi notes
         ]
+
+
+viewScale : List Piano.Note.Note -> Element msg
+viewScale a =
+    let
+        width_ : Int
+        width_ =
+            noteThickness * 12 * numberOfOctaves
+
+        height_ : Int
+        height_ =
+            32
+
+        octaveLines : List (Element msg)
+        octaveLines =
+            List.map
+                (\x ->
+                    el
+                        [ width (px 1)
+                        , height (px height_)
+                        , moveRight (toFloat (noteThickness * 12 * x))
+                        , Element.Background.color darkGray
+                        ]
+                        none
+                )
+                (List.range 1 (numberOfOctaves - 1))
+
+        scaleNotes : List (Element msg)
+        scaleNotes =
+            List.map
+                (\( x, count ) ->
+                    el
+                        [ width (px noteThickness)
+                        , height (px height_)
+                        , moveRight (toFloat (((\(Midi.Note x2) -> x2) x - 26) * noteThickness) - (toFloat noteThickness / 2))
+                        , Element.Background.color (noteToColor x)
+                        , Element.Border.shadow (shadow 4)
+                        , inFront
+                            (el [ Element.Font.size 3, Element.Font.color white, centerX, centerY ]
+                                (text (String.fromInt count ++ "×"))
+                            )
+                        ]
+                        none
+                )
+                (Dict.Any.toList
+                    (List.foldl
+                        (\x acc ->
+                            Dict.Any.update
+                                (\(Midi.Note x2) -> x2)
+                                x.note
+                                (\x2 -> Just (Maybe.withDefault 0 x2 + 1))
+                                acc
+                        )
+                        Dict.Any.empty
+                        a
+                    )
+                )
+    in
+    el
+        ([ width (px width_)
+         , height (px height_)
+         , centerX
+         , Element.Background.color white
+         , Element.Border.shadow (shadow 80)
+         , Element.Border.rounded 16
+         , clip
+         ]
+            ++ List.map inFront scaleNotes
+            ++ List.map inFront octaveLines
+        )
+        none
 
 
 viewNotes : Dict.Any.Dict Midi.Note () -> Midi.File -> List Piano.Note.Note -> Element msg
