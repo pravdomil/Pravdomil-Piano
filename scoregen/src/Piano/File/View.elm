@@ -33,12 +33,12 @@ viewFile activeNotes a =
         , spacing 8
         , paddingEach (EdgesXY 0 0 8 16)
         ]
-        [ viewNotes activeNotes a.midi notes
+        [ viewNotes a.scale activeNotes a.midi notes
         ]
 
 
-viewNotes : Dict.Any.Dict Midi.Note () -> Midi.File -> List Piano.Note.Note -> Element msg
-viewNotes activeNotes file notes =
+viewNotes : Int -> Dict.Any.Dict Midi.Note () -> Midi.File -> List Piano.Note.Note -> Element msg
+viewNotes scale activeNotes file notes =
     let
         width_ : Int
         width_ =
