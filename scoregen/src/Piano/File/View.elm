@@ -52,7 +52,7 @@ viewFile activeNotes a =
                 , min = -6
                 , max = 6
                 , step = Just 1
-                , value = toFloat a.scale
+                , value = toFloat (Piano.Scale.toInt a.scale)
                 , thumb = Element.Input.defaultThumb
                 }
             )
