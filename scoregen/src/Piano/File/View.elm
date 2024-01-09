@@ -8,13 +8,14 @@ import Element.Font
 import List.Extra
 import Midi
 import Piano.File
+import Piano.Msg
 import Piano.Note
 import Piano.NoteType
 import Piano.TrackNumber
 import Piano.Utils.Theme exposing (..)
 
 
-viewFile : Dict.Any.Dict Midi.Note () -> Piano.File.File -> Element msg
+viewFile : Dict.Any.Dict Midi.Note () -> Piano.File.File -> Element Piano.Msg.Msg
 viewFile activeNotes a =
     let
         tracks : List Midi.Track
