@@ -65,3 +65,47 @@ fromInt a =
 
                 _ ->
                     Nothing
+
+
+toInt : Scale -> Int
+toInt a =
+    case a of
+        C ->
+            0
+
+        G ->
+            1
+
+        D ->
+            2
+
+        A ->
+            3
+
+        E ->
+            4
+
+        B ->
+            5
+
+        Fsharp ->
+            6
+
+        --
+        F ->
+            -1
+
+        Bflat ->
+            -2
+
+        Eflat ->
+            -3
+
+        Aflat ->
+            -4
+
+        Dflat ->
+            -5
+
+        Gflat ->
+            -6
