@@ -33,7 +33,29 @@ viewFile activeNotes a =
         , spacing 8
         , paddingEach (EdgesXY 0 0 8 16)
         ]
-        [ viewNotes a.scale activeNotes a.midi notes
+        [ el [ width (px 128), centerX ]
+            (Element.Input.slider
+                [ height (px 32)
+                , behindContent
+                    (el
+                        [ width fill
+                        , height (px 1)
+                        , centerY
+                        , Element.Background.color lightBlack
+                        ]
+                        none
+                    )
+                ]
+                { onChange = \x -> Piano.Msg.ScaleChanged (round x)
+                , label = Element.Input.labelLeft [ centerY ] (text ("Scale " ++ String.fromInt a.scale))
+                , min = -6
+                , max = 6
+                , step = Just 1
+                , value = toFloat a.scale
+                , thumb = Element.Input.defaultThumb
+                }
+            )
+        , viewNotes a.scale activeNotes a.midi notes
         ]
 
 
