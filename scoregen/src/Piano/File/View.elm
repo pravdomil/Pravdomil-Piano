@@ -144,17 +144,13 @@ viewNotes scale activeNotes file notes =
                         note : Midi.Note
                         note =
                             Midi.Note (24 + 9 + x)
-
-                        active : Bool
-                        active =
-                            False
                     in
                     el
                         [ width (px noteThickness)
                         , height fill
                         , moveRight (toFloat (((\(Midi.Note x2) -> x2) note - 33) * noteThickness) - (toFloat noteThickness / 2))
                         , Element.Background.color
-                            (if active then
+                            (if Piano.Scale.isNoteInScale scale note then
                                 rgba 0 0 0 0
 
                              else
