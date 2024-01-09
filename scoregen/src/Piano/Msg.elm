@@ -13,6 +13,7 @@ type Msg
     | FileLoaded File.File Bytes.Bytes
       --
     | TrackToggleRequested Piano.TrackNumber.TrackNumber Bool
+    | ScaleChanged Int
       --
     | WebMidiInitialized (Result JavaScript.Error ())
     | WebMidiMessageReceived Json.Decode.Value
