@@ -109,7 +109,7 @@ viewNotes scale activeNotes file notes =
                     el
                         [ width (px noteThickness)
                         , height (px height_)
-                        , moveRight (toFloat (((\(Midi.Note x2) -> x2) x - 26) * noteThickness) - (toFloat noteThickness / 2))
+                        , moveRight (toFloat (((\(Midi.Note x2) -> x2) x - 33) * noteThickness) - (toFloat noteThickness / 2))
                         , Element.Background.color (noteToColor x)
                         , Element.Border.shadow (shadow 4)
                         , alpha 0.5
@@ -127,7 +127,7 @@ viewNotes scale activeNotes file notes =
             el
                 [ width (px noteThickness)
                 , height (px (max 8 (round (ticksToFloat b.length))))
-                , moveRight (toFloat (((\(Midi.Note x) -> x) b.note - 26) * noteThickness) - (toFloat noteThickness / 2))
+                , moveRight (toFloat (((\(Midi.Note x) -> x) b.note - 33) * noteThickness) - (toFloat noteThickness / 2))
                 , moveDown (ticksToFloat b.time)
                 , Element.Background.color (noteToColor b.note)
                 , Element.Border.shadow (shadow 4)
