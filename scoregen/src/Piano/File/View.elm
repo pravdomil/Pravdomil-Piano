@@ -134,6 +134,35 @@ viewNotes scale activeNotes file notes =
                 , Element.Border.rounded 4
                 ]
                 none
+
+        scaleNotes : List (Element msg)
+        scaleNotes =
+            List.map
+                (\x ->
+                    let
+                        note : Midi.Note
+                        note =
+                            Midi.Note (24 + 9 + x)
+
+                        active : Bool
+                        active =
+                            False
+                    in
+                    el
+                        [ width (px noteThickness)
+                        , height fill
+                        , moveRight (toFloat (((\(Midi.Note x2) -> x2) note - 33) * noteThickness) - (toFloat noteThickness / 2))
+                        , Element.Background.color
+                            (if active then
+                                rgba 0 0 0 0
+
+                             else
+                                rgba 0 0 0 0.1
+                            )
+                        ]
+                        none
+                )
+                (List.range 0 (numberOfOctaves * 12))
     in
     el
         ([ width (px width_)
