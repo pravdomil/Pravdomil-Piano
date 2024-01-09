@@ -43,23 +43,25 @@ fromInt a =
         6 ->
             Just Fsharp
 
-        (-1) ->
-            Just F
-
-        (-2) ->
-            Just Bflat
-
-        (-3) ->
-            Just Eflat
-
-        (-4) ->
-            Just Aflat
-
-        (-5) ->
-            Just Dflat
-
-        (-6) ->
-            Just Gflat
-
         _ ->
-            Nothing
+            case negate a of
+                1 ->
+                    Just F
+
+                2 ->
+                    Just Bflat
+
+                3 ->
+                    Just Eflat
+
+                4 ->
+                    Just Aflat
+
+                5 ->
+                    Just Dflat
+
+                6 ->
+                    Just Gflat
+
+                _ ->
+                    Nothing
