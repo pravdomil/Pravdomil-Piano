@@ -33,8 +33,7 @@ viewFile activeNotes a =
         , spacing 8
         , paddingEach (EdgesXY 0 0 8 16)
         ]
-        [ viewScale notes
-        , viewNotes activeNotes a.midi notes
+        [ viewNotes activeNotes a.midi notes
         ]
 
 
