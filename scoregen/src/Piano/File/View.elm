@@ -143,7 +143,7 @@ viewNotes scale activeNotes file notes =
                     let
                         note : Midi.Note
                         note =
-                            Midi.Note (24 + 9 + x)
+                            Midi.Note x
                     in
                     el
                         [ width (px noteThickness)
