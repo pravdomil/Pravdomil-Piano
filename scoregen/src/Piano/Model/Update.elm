@@ -10,6 +10,7 @@ import Midi.Decode
 import Piano.File
 import Piano.Model
 import Piano.Msg
+import Piano.Scale
 import Piano.TrackNumber
 import Platform.Extra
 import Task
@@ -44,7 +45,7 @@ update msg =
                     | file =
                         Midi.Decode.file c
                             |> Result.fromMaybe Piano.Model.DecodeError
-                            |> Result.map (\x2 -> Piano.File.File b x2 Dict.Any.empty 0)
+                            |> Result.map (\x2 -> Piano.File.File b x2 Dict.Any.empty Piano.Scale.C)
                   }
                 , Cmd.none
                 )
