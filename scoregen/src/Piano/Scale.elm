@@ -109,3 +109,47 @@ toInt a =
 
         Gflat ->
             -6
+
+
+toString : Scale -> String
+toString a =
+    case a of
+        C ->
+            "C"
+
+        G ->
+            "G"
+
+        D ->
+            "D"
+
+        A ->
+            "A"
+
+        E ->
+            "E"
+
+        B ->
+            "B"
+
+        Fsharp ->
+            "F♯"
+
+        --
+        F ->
+            "F"
+
+        Bflat ->
+            "B♭"
+
+        Eflat ->
+            "E♭"
+
+        Aflat ->
+            "A♭"
+
+        Dflat ->
+            "D♭"
+
+        Gflat ->
+            "G♭"
