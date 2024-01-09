@@ -60,7 +60,7 @@ viewFile activeNotes a =
         ]
 
 
-viewNotes : Int -> Dict.Any.Dict Midi.Note () -> Midi.File -> List Piano.Note.Note -> Element msg
+viewNotes : Piano.Scale.Scale -> Dict.Any.Dict Midi.Note () -> Midi.File -> List Piano.Note.Note -> Element msg
 viewNotes scale activeNotes file notes =
     let
         width_ : Int
