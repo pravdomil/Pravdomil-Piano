@@ -11,6 +11,7 @@ import Piano.File
 import Piano.Msg
 import Piano.Note
 import Piano.NoteType
+import Piano.Scale
 import Piano.TrackNumber
 import Piano.Utils.Theme exposing (..)
 
