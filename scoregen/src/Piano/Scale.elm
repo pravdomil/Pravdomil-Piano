@@ -1,5 +1,7 @@
 module Piano.Scale exposing (..)
 
+import Midi
+
 
 type Scale
     = C
@@ -153,3 +155,31 @@ toString a =
 
         Gflat ->
             "G♭"
+
+
+isNoteInScale : Scale -> Midi.Note -> Bool
+isNoteInScale _ a =
+    case modBy 12 ((\(Midi.Note x) -> x) a) of
+        0 ->
+            True
+
+        2 ->
+            True
+
+        4 ->
+            True
+
+        5 ->
+            True
+
+        7 ->
+            True
+
+        9 ->
+            True
+
+        11 ->
+            True
+
+        _ ->
+            False
