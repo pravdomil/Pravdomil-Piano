@@ -159,6 +159,51 @@ toString a =
             "G♭"
 
 
+toSemitones : Scale -> Int
+toSemitones a =
+    case a of
+        C ->
+            0
+
+        --
+        G ->
+            7
+
+        D ->
+            2
+
+        A ->
+            9
+
+        E ->
+            4
+
+        B ->
+            11
+
+        Fsharp ->
+            6
+
+        --
+        F ->
+            5
+
+        Bflat ->
+            10
+
+        Eflat ->
+            3
+
+        Aflat ->
+            8
+
+        Dflat ->
+            1
+
+        Gflat ->
+            6
+
+
 isNoteInScale : Scale -> Midi.Note -> Bool
 isNoteInScale _ a =
     case modBy 12 ((\(Midi.Note x) -> x) a) of
