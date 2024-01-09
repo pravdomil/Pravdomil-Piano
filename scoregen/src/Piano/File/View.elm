@@ -202,7 +202,7 @@ noteToColor a =
 
 numberOfOctaves : Int
 numberOfOctaves =
-    6
+    5
 
 
 noteThickness : Int
