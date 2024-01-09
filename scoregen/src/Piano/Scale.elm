@@ -205,8 +205,8 @@ toSemitones a =
 
 
 isNoteInScale : Scale -> Midi.Note -> Bool
-isNoteInScale _ a =
-    case modBy 12 ((\(Midi.Note x) -> x) a) of
+isNoteInScale scale a =
+    case modBy 12 ((\(Midi.Note x) -> x) a + toSemitones scale) of
         0 ->
             True
 
