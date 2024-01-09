@@ -159,7 +159,7 @@ viewNotes scale activeNotes file notes =
                         ]
                         none
                 )
-                (List.range 0 (numberOfOctaves * 12))
+                (List.range 36 (36 + numberOfOctaves * 12))
     in
     el
         ([ width (px width_)
