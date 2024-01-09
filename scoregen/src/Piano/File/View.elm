@@ -4,7 +4,7 @@ import Dict.Any
 import Element exposing (..)
 import Element.Background
 import Element.Border
-import Element.Font
+import Element.Input
 import List.Extra
 import Midi
 import Piano.File
