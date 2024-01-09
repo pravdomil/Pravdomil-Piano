@@ -69,6 +69,12 @@ update msg =
                 , Cmd.none
                 )
 
+        Piano.Msg.ScaleChanged a ->
+            \x ->
+                ( { x | file = Result.map (\x2 -> { x2 | scale = a }) x.file }
+                , Cmd.none
+                )
+
         Piano.Msg.WebMidiInitialized _ ->
             Platform.Extra.noOperation
 
