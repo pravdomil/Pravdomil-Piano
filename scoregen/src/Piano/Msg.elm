@@ -4,6 +4,7 @@ import Bytes
 import File
 import JavaScript
 import Json.Decode
+import Piano.Scale
 import Piano.TrackNumber
 
 
@@ -13,7 +14,7 @@ type Msg
     | FileLoaded File.File Bytes.Bytes
       --
     | TrackToggleRequested Piano.TrackNumber.TrackNumber Bool
-    | ScaleChanged Int
+    | ScaleChanged Piano.Scale.Scale
       --
     | WebMidiInitialized (Result JavaScript.Error ())
     | WebMidiMessageReceived Json.Decode.Value
