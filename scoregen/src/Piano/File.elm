@@ -10,4 +10,5 @@ type alias File =
     { file : File.File
     , midi : Midi.File
     , disabledTracks : Dict.Any.Dict Piano.TrackNumber.TrackNumber ()
+    , scale : Int
     }
