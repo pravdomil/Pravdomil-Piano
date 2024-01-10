@@ -32,7 +32,6 @@ viewFile activeNotes a =
     column
         [ width fill
         , spacing 8
-        , paddingEach (EdgesXY 0 0 8 16)
         ]
         [ row [ spacing 8, centerX ]
             [ el [ width (px 128), Element.Font.alignRight ]
