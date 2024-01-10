@@ -200,7 +200,7 @@ viewNotes scale activeNotes file notes =
 
 noteToColor : Piano.Scale.Scale -> Midi.Note -> Color
 noteToColor scale a =
-    case modBy 12 ((\(Midi.Note x) -> x) a + Piano.Scale.toInt scale * -7) of
+    case modBy 12 ((\(Midi.Note x) -> x) a) of
         0 ->
             rgb255 255 0 0
 
