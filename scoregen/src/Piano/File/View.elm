@@ -200,30 +200,34 @@ viewNotes scale activeNotes file notes =
 
 noteToColor : Piano.Scale.Scale -> Midi.Note -> Color
 noteToColor scale a =
-    case modBy 12 ((\(Midi.Note x) -> x) a) of
-        0 ->
-            indexToColor 0
+    if Piano.Scale.isNoteInScale scale a then
+        case modBy 12 ((\(Midi.Note x) -> x) a) of
+            0 ->
+                indexToColor 0
 
-        2 ->
-            indexToColor 1
+            2 ->
+                indexToColor 1
 
-        4 ->
-            indexToColor 2
+            4 ->
+                indexToColor 2
 
-        5 ->
-            indexToColor 3
+            5 ->
+                indexToColor 3
 
-        7 ->
-            indexToColor 4
+            7 ->
+                indexToColor 4
 
-        9 ->
-            indexToColor 5
+            9 ->
+                indexToColor 5
 
-        11 ->
-            indexToColor 6
+            11 ->
+                indexToColor 6
 
-        _ ->
-            indexToColor 7
+            _ ->
+                indexToColor 7
+
+    else
+        indexToColor 7
 
 
 indexToColor : Int -> Color
