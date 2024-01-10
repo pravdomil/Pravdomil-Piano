@@ -33,7 +33,29 @@ viewFile activeNotes a =
         [ width fill
         , spacing 8
         ]
-        [ row [ spacing 8, centerX ]
+        [ row [ centerX ]
+            (List.indexedMap
+                (\i _ ->
+                    let
+                        number : Piano.TrackNumber.TrackNumber
+                        number =
+                            Piano.TrackNumber.fromInt i
+                    in
+                    Element.Input.checkbox
+                        (interactive
+                            [ width (px 40)
+                            , height (px 40)
+                            ]
+                        )
+                        { icon = Element.Input.defaultCheckbox
+                        , label = Element.Input.labelRight [ centerY ] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
+                        , checked = not (Dict.Any.member Piano.TrackNumber.toInt number a.disabledTracks)
+                        , onChange = Piano.Msg.TrackToggleRequested number
+                        }
+                )
+                ((\( x, x2 ) -> x :: x2) a.midi.tracks)
+            )
+        , row [ spacing 8, centerX ]
             [ el [ width (px 128), Element.Font.alignRight ]
                 (text
                     (if Piano.Scale.toInt a.scale < 0 then
