@@ -1,5 +1,6 @@
 module Piano.Scale exposing (..)
 
+import List.Extra
 import Midi
 
 
@@ -275,3 +276,21 @@ isNoteInScale scale a =
 
         _ ->
             False
+
+
+fromMidi : Midi.File -> Maybe Scale
+fromMidi a =
+    List.Extra.findMap
+        (\x ->
+            List.Extra.findMap
+                (\x2 ->
+                    case x2.type_ of
+                        Midi.KeySignature x3 _ ->
+                            fromInt x3
+
+                        _ ->
+                            Nothing
+                )
+                x
+        )
+        ((\( x, x2 ) -> x :: x2) a.tracks)
