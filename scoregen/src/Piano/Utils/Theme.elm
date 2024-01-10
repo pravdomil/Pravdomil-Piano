@@ -26,6 +26,10 @@ black =
     rgb 0 0 0
 
 
+darkBlack =
+    rgb 0.2 0.2 0.2
+
+
 lightBlack =
     rgb 0.5 0.5 0.5
 
