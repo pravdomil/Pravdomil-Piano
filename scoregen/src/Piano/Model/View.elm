@@ -20,7 +20,7 @@ view model =
     Browser.Document
         "Pravdomil Piano Score Generator"
         [ layout [ width fill, Element.Font.size 16, Element.Background.color darkBlack, Element.Font.color white ] (viewBody model)
-        , Html.node "style" [] [ Html.text "body{background-color:rgb(230,230,230)}" ]
+        , Html.node "style" [] [ Html.text "body{background-color:rgb(51,51,51)}" ]
         ]
 
 
