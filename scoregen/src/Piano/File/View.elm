@@ -228,7 +228,7 @@ noteToColor scale a =
 
 indexToColor : Int -> Color
 indexToColor a =
-    case modBy 12 ((\(Midi.Note x) -> x) a + Piano.Scale.toInt scale * -7) of
+    case a of
         0 ->
             rgb255 255 0 0
 
