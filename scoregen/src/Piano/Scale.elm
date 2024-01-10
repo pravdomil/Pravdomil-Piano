@@ -278,8 +278,8 @@ isNoteInScale scale a =
             False
 
 
-fromMidi : Midi.File -> Maybe Scale
-fromMidi a =
+fromMidiFile : Midi.File -> Maybe Scale
+fromMidiFile a =
     List.Extra.findMap
         (\x ->
             List.Extra.findMap
