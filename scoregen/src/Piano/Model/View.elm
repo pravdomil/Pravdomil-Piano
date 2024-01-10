@@ -63,7 +63,7 @@ viewHeader model =
                                     Piano.TrackNumber.fromInt i
                             in
                             Element.Input.checkbox
-                                (clickable [ paddingXY 8 0, height fill ])
+                                (interactive [ paddingXY 8 0, height fill ])
                                 { icon = Element.Input.defaultCheckbox
                                 , label = Element.Input.labelRight [ centerY ] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
                                 , checked = not (Dict.Any.member Piano.TrackNumber.toInt number b.disabledTracks)
@@ -76,7 +76,7 @@ viewHeader model =
             Err _ ->
                 none
         , Element.Input.button
-            (clickable [ height fill ])
+            (interactive [ height fill ])
             { label = text "Select MIDI File"
             , onPress = Just Piano.Msg.FileSelectRequested
             }

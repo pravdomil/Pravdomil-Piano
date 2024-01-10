@@ -94,7 +94,7 @@ heading3 a =
     Element.Region.heading 3 :: Element.Font.size 24 :: a
 
 
-clickable a =
+interactive a =
     Element.Font.color blue
         :: Element.Border.rounded 4
         :: focused
