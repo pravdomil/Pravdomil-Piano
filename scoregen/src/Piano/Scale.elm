@@ -4,66 +4,66 @@ import Midi
 
 
 type Scale
-    = C
+    = Base
       --
-    | G
-    | D
-    | A
-    | E
-    | B
-    | Fsharp
+    | Sharp1
+    | Sharp2
+    | Sharp3
+    | Sharp4
+    | Sharp5
+    | Sharp6
       --
-    | F
-    | Bflat
-    | Eflat
-    | Aflat
-    | Dflat
-    | Gflat
+    | Flat1
+    | Flat2
+    | Flat3
+    | Flat4
+    | Flat5
+    | Flat6
 
 
 fromInt : Int -> Maybe Scale
 fromInt a =
     case a of
         0 ->
-            Just C
+            Just Base
 
         1 ->
-            Just G
+            Just Sharp1
 
         2 ->
-            Just D
+            Just Sharp2
 
         3 ->
-            Just A
+            Just Sharp3
 
         4 ->
-            Just E
+            Just Sharp4
 
         5 ->
-            Just B
+            Just Sharp5
 
         6 ->
-            Just Fsharp
+            Just Sharp6
 
         _ ->
             case negate a of
                 1 ->
-                    Just F
+                    Just Flat1
 
                 2 ->
-                    Just Bflat
+                    Just Flat2
 
                 3 ->
-                    Just Eflat
+                    Just Flat3
 
                 4 ->
-                    Just Aflat
+                    Just Flat4
 
                 5 ->
-                    Just Dflat
+                    Just Flat5
 
                 6 ->
-                    Just Gflat
+                    Just Flat6
 
                 _ ->
                     Nothing
@@ -72,135 +72,135 @@ fromInt a =
 toInt : Scale -> Int
 toInt a =
     case a of
-        C ->
+        Base ->
             0
 
         --
-        G ->
+        Sharp1 ->
             1
 
-        D ->
+        Sharp2 ->
             2
 
-        A ->
+        Sharp3 ->
             3
 
-        E ->
+        Sharp4 ->
             4
 
-        B ->
+        Sharp5 ->
             5
 
-        Fsharp ->
+        Sharp6 ->
             6
 
         --
-        F ->
+        Flat1 ->
             -1
 
-        Bflat ->
+        Flat2 ->
             -2
 
-        Eflat ->
+        Flat3 ->
             -3
 
-        Aflat ->
+        Flat4 ->
             -4
 
-        Dflat ->
+        Flat5 ->
             -5
 
-        Gflat ->
+        Flat6 ->
             -6
 
 
 toString : Scale -> String
 toString a =
     case a of
-        C ->
+        Base ->
             "C"
 
         --
-        G ->
+        Sharp1 ->
             "G"
 
-        D ->
+        Sharp2 ->
             "D"
 
-        A ->
+        Sharp3 ->
             "A"
 
-        E ->
+        Sharp4 ->
             "E"
 
-        B ->
+        Sharp5 ->
             "B"
 
-        Fsharp ->
+        Sharp6 ->
             "F♯"
 
         --
-        F ->
+        Flat1 ->
             "F"
 
-        Bflat ->
+        Flat2 ->
             "B♭"
 
-        Eflat ->
+        Flat3 ->
             "E♭"
 
-        Aflat ->
+        Flat4 ->
             "A♭"
 
-        Dflat ->
+        Flat5 ->
             "D♭"
 
-        Gflat ->
+        Flat6 ->
             "G♭"
 
 
 toSemitones : Scale -> Int
 toSemitones a =
     case a of
-        C ->
+        Base ->
             0
 
         --
-        G ->
+        Sharp1 ->
             7
 
-        D ->
+        Sharp2 ->
             2
 
-        A ->
+        Sharp3 ->
             9
 
-        E ->
+        Sharp4 ->
             4
 
-        B ->
+        Sharp5 ->
             11
 
-        Fsharp ->
+        Sharp6 ->
             6
 
         --
-        F ->
+        Flat1 ->
             5
 
-        Bflat ->
+        Flat2 ->
             10
 
-        Eflat ->
+        Flat3 ->
             3
 
-        Aflat ->
+        Flat4 ->
             8
 
-        Dflat ->
+        Flat5 ->
             1
 
-        Gflat ->
+        Flat6 ->
             6
 
 

@@ -45,7 +45,7 @@ update msg =
                     | file =
                         Midi.Decode.file c
                             |> Result.fromMaybe Piano.Model.DecodeError
-                            |> Result.map (\x2 -> Piano.File.File b x2 Dict.Any.empty Piano.Scale.C)
+                            |> Result.map (\x2 -> Piano.File.File b x2 Dict.Any.empty (Maybe.withDefault Piano.Scale.Base (Piano.Scale.fromMidi x2)))
                   }
                 , Cmd.none
                 )
