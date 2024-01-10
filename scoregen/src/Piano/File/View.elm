@@ -31,7 +31,7 @@ viewFile activeNotes a =
     in
     column
         [ width fill
-        , spacing 8
+        , spacing 4
         ]
         [ row [ centerX ]
             (List.indexedMap
