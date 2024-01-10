@@ -4,6 +4,7 @@ import Dict.Any
 import Element exposing (..)
 import Element.Background
 import Element.Border
+import Element.Font
 import Element.Input
 import List.Extra
 import Midi
@@ -34,9 +35,19 @@ viewFile activeNotes a =
         , spacing 8
         , paddingEach (EdgesXY 0 0 8 16)
         ]
-        [ el [ width (px 128), centerX ]
-            (Element.Input.slider
-                [ height (px 32)
+        [ row [ spacing 8, centerX ]
+            [ el [ width (px 128), Element.Font.alignRight ]
+                (text
+                    (if Piano.Scale.toInt a.scale < 0 then
+                        Piano.Scale.toString a.scale
+
+                     else
+                        ""
+                    )
+                )
+            , Element.Input.slider
+                [ width (px 128)
+                , height (px 32)
                 , behindContent
                     (el
                         [ width fill
@@ -55,7 +66,16 @@ viewFile activeNotes a =
                 , value = toFloat (Piano.Scale.toInt a.scale)
                 , thumb = Element.Input.defaultThumb
                 }
-            )
+            , el [ width (px 128) ]
+                (text
+                    (if Piano.Scale.toInt a.scale > 0 then
+                        Piano.Scale.toString a.scale
+
+                     else
+                        ""
+                    )
+                )
+            ]
         , viewNotes a.scale activeNotes a.midi notes
         ]
 
