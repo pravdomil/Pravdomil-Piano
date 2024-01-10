@@ -19,8 +19,8 @@ view : Piano.Model.Model -> Browser.Document Piano.Msg.Msg
 view model =
     Browser.Document
         "Pravdomil Piano Score Generator"
-        [ layout [ width fill, Element.Font.size 16, Element.Background.color darkBlack, Element.Font.color white ] (viewBody model)
-        , Html.node "style" [] [ Html.text "body{background-color:rgb(51,51,51)}" ]
+        [ layout [ width fill, Element.Font.size 16, Element.Background.color deepBlack, Element.Font.color white ] (viewBody model)
+        , Html.node "style" [] [ Html.text "body{background-color:rgb(38,38,38)}" ]
         ]
 
 
