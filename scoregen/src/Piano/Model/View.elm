@@ -53,29 +53,6 @@ viewHeader model =
 
                     Piano.Model.DecodeError ->
                         text "Cannot read MIDI file."
-        , case model.file of
-            Ok b ->
-                row [ height fill ]
-                    (List.indexedMap
-                        (\i _ ->
-                            let
-                                number : Piano.TrackNumber.TrackNumber
-                                number =
-                                    Piano.TrackNumber.fromInt i
-                            in
-                            Element.Input.checkbox
-                                (interactive [ paddingXY 8 0, height fill ])
-                                { icon = Element.Input.defaultCheckbox
-                                , label = Element.Input.labelRight [ centerY ] (text (String.fromInt (Piano.TrackNumber.toInt number + 1)))
-                                , checked = not (Dict.Any.member Piano.TrackNumber.toInt number b.disabledTracks)
-                                , onChange = Piano.Msg.TrackToggleRequested number
-                                }
-                        )
-                        ((\( x, x2 ) -> x :: x2) b.midi.tracks)
-                    )
-
-            Err _ ->
-                none
         , Element.Input.button
             (interactive [ height fill ])
             { label = text "Select MIDI File"
