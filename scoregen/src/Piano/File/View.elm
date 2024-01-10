@@ -43,6 +43,26 @@ viewFile activeNotes a =
                         ""
                     )
                 )
+            , Element.Input.button
+                (interactive
+                    [ width (px 40)
+                    , height (px 40)
+                    , Element.Font.center
+                    ]
+                )
+                { onPress = Just (Piano.Msg.ScaleChanged (Maybe.withDefault a.scale (Piano.Scale.fromInt (Piano.Scale.toInt a.scale - 1))))
+                , label = text "♭"
+                }
+            , Element.Input.button
+                (interactive
+                    [ width (px 40)
+                    , height (px 40)
+                    , Element.Font.center
+                    ]
+                )
+                { onPress = Just (Piano.Msg.ScaleChanged (Maybe.withDefault a.scale (Piano.Scale.fromInt (Piano.Scale.toInt a.scale + 1))))
+                , label = text "♯"
+                }
             , el [ width (px 128) ]
                 (text
                     (if Piano.Scale.toInt a.scale > 0 then
