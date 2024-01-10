@@ -130,7 +130,7 @@ viewNotes scale activeNotes file notes =
                         [ width (px noteThickness)
                         , height (px height_)
                         , moveRight (toFloat (((\(Midi.Note x2) -> x2) x - 12 * 3) * noteThickness) - (toFloat noteThickness / 2))
-                        , Element.Background.color (noteToColor x)
+                        , Element.Background.color (noteToColor scale x)
                         , Element.Border.shadow (shadow 4)
                         , alpha 0.5
                         ]
@@ -149,7 +149,7 @@ viewNotes scale activeNotes file notes =
                 , height (px (max 8 (round (ticksToFloat b.length))))
                 , moveRight (toFloat (((\(Midi.Note x) -> x) b.note - 12 * 3) * noteThickness) - (toFloat noteThickness / 2))
                 , moveDown (ticksToFloat b.time)
-                , Element.Background.color (noteToColor b.note)
+                , Element.Background.color (noteToColor scale b.note)
                 , Element.Border.shadow (shadow 4)
                 , Element.Border.rounded 4
                 ]
@@ -198,9 +198,9 @@ viewNotes scale activeNotes file notes =
         none
 
 
-noteToColor : Midi.Note -> Color
-noteToColor a =
-    case Piano.NoteType.toInterval (Piano.NoteType.fromMidiNote a) of
+noteToColor : Piano.Scale.Scale -> Midi.Note -> Color
+noteToColor scale a =
+    case modBy 12 ((\(Midi.Note x) -> x) a + Piano.Scale.toInt scale * -7) of
         0 ->
             rgb255 0xFF 0x00 0x00
 
