@@ -26,7 +26,7 @@ view model =
 
 viewBody : Piano.Model.Model -> Element Piano.Msg.Msg
 viewBody model =
-    column [ width fill, spacing 8 ]
+    column [ width fill, spacing 4 ]
         [ el [] none
         , viewHeader model
         , case model.file of
