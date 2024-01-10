@@ -35,7 +35,7 @@ darkBlack =
 
 
 lightBlack =
-    rgb 0.5 0.5 0.5
+    rgb 0.3 0.3 0.3
 
 
 lightGray =
