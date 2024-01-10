@@ -114,6 +114,51 @@ toInt a =
             -6
 
 
+toString : Scale -> String
+toString a =
+    case a of
+        Base ->
+            ""
+
+        --
+        Sharp1 ->
+            "♯"
+
+        Sharp2 ->
+            "♯♯"
+
+        Sharp3 ->
+            "♯♯♯"
+
+        Sharp4 ->
+            "♯♯♯♯"
+
+        Sharp5 ->
+            "♯♯♯♯♯"
+
+        Sharp6 ->
+            "♯♯♯♯♯♯"
+
+        --
+        Flat1 ->
+            "♭"
+
+        Flat2 ->
+            "♭♭"
+
+        Flat3 ->
+            "♭♭♭"
+
+        Flat4 ->
+            "♭♭♭♭"
+
+        Flat5 ->
+            "♭♭♭♭♭"
+
+        Flat6 ->
+            "♭♭♭♭♭♭"
+
+
 toName : Scale -> String
 toName a =
     case a of
