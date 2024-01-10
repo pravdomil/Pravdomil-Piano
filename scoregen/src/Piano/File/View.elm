@@ -98,7 +98,7 @@ viewNotes scale activeNotes file notes =
                         [ width (px 1)
                         , height (px height_)
                         , moveRight (toFloat (noteThickness * 12 * x))
-                        , Element.Background.color darkGray
+                        , Element.Background.color lightBlack
                         ]
                         none
                 )
@@ -116,7 +116,7 @@ viewNotes scale activeNotes file notes =
                         [ width (px width_)
                         , height (px 1)
                         , moveDown (barsSpacing * toFloat x)
-                        , Element.Background.color lightGray
+                        , Element.Background.color lightBlack
                         ]
                         none
                 )
