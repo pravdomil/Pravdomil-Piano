@@ -35,6 +35,7 @@ viewBody model =
 
             Err _ ->
                 none
+        , el [ height (px 80) ] none
         ]
 
 
