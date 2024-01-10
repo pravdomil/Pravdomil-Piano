@@ -224,10 +224,10 @@ noteToColor scale a =
                 indexToColor 6
 
             _ ->
-                indexToColor 7
+                indexToColor -1
 
     else
-        indexToColor 7
+        indexToColor -1
 
 
 indexToColor : Int -> Color
