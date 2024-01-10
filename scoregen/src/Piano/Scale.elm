@@ -114,8 +114,8 @@ toInt a =
             -6
 
 
-toString : Scale -> String
-toString a =
+toName : Scale -> String
+toName a =
     case a of
         Base ->
             "C"
