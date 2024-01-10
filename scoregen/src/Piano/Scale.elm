@@ -205,54 +205,9 @@ toName a =
             "G♭"
 
 
-toSemitones : Scale -> Int
-toSemitones a =
-    case a of
-        Base ->
-            0
-
-        --
-        Sharp1 ->
-            7
-
-        Sharp2 ->
-            2
-
-        Sharp3 ->
-            9
-
-        Sharp4 ->
-            4
-
-        Sharp5 ->
-            11
-
-        Sharp6 ->
-            6
-
-        --
-        Flat1 ->
-            5
-
-        Flat2 ->
-            10
-
-        Flat3 ->
-            3
-
-        Flat4 ->
-            8
-
-        Flat5 ->
-            1
-
-        Flat6 ->
-            6
-
-
 isNoteInScale : Scale -> Midi.Note -> Bool
 isNoteInScale scale a =
-    case modBy 12 ((\(Midi.Note x) -> x) a + toSemitones scale) of
+    case modBy 12 ((\(Midi.Note x) -> x) a + toInt scale * -7) of
         0 ->
             True
 
