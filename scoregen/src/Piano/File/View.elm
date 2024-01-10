@@ -226,7 +226,11 @@ noteToColor scale a =
                 indexToColor 2
 
             5 ->
-                indexToColor 3
+                if Piano.Scale.toInt scale > 0 then
+                    indexToColor 2
+
+                else
+                    indexToColor 3
 
             6 ->
                 if Piano.Scale.toInt scale > 0 then
@@ -256,7 +260,11 @@ noteToColor scale a =
                     indexToColor 6
 
             11 ->
-                indexToColor 6
+                if Piano.Scale.toInt scale > 0 then
+                    indexToColor 6
+
+                else
+                    indexToColor 0
 
             _ ->
                 indexToColor -1
