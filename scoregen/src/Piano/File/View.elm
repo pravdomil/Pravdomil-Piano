@@ -48,7 +48,7 @@ viewFile activeNotes a =
                     )
                 ]
                 { onChange = \x -> Piano.Msg.ScaleChanged (Maybe.withDefault a.scale (Piano.Scale.fromInt (round x)))
-                , label = Element.Input.labelLeft [ centerY, width (px 32) ] (text (Piano.Scale.toString a.scale))
+                , label = Element.Input.labelHidden "Scale"
                 , min = -6
                 , max = 6
                 , step = Just 1
