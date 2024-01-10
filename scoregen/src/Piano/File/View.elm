@@ -184,7 +184,7 @@ viewNotes scale activeNotes file notes =
         ([ width (px width_)
          , height (px height_)
          , centerX
-         , Element.Background.color white
+         , Element.Background.color darkBlack
          , Element.Border.shadow (shadow 80)
          , Element.Border.rounded 16
          , clip
