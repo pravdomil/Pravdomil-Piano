@@ -43,7 +43,7 @@ darkGray =
 
 
 blue =
-    rgb 0 0 1
+    rgb255 59 153 252
 
 
 
