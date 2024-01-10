@@ -301,7 +301,7 @@ indexToColor a =
             rgb255 83 58 152
 
         _ ->
-            rgb255 0 0 0
+            rgb255 169 169 169
 
 
 
