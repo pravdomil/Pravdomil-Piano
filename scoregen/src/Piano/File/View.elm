@@ -276,9 +276,37 @@ noteToColor scale a =
         indexToColor -1
 
 
+indexToInterval : Int -> Int
+indexToInterval a =
+    case a of
+        0 ->
+            0
+
+        1 ->
+            4
+
+        2 ->
+            1
+
+        3 ->
+            5
+
+        4 ->
+            2
+
+        5 ->
+            6
+
+        6 ->
+            3
+
+        _ ->
+            -1
+
+
 indexToColor : Int -> Color
 indexToColor a =
-    case a of
+    case indexToInterval a of
         0 ->
             rgb255 255 0 0
 
