@@ -44,27 +44,6 @@ viewFile activeNotes a =
                         ""
                     )
                 )
-            , Element.Input.slider
-                [ width (px 128)
-                , height (px 32)
-                , behindContent
-                    (el
-                        [ width fill
-                        , height (px 1)
-                        , centerY
-                        , Element.Background.color lightBlack
-                        ]
-                        none
-                    )
-                ]
-                { onChange = \x -> Piano.Msg.ScaleChanged (Maybe.withDefault a.scale (Piano.Scale.fromInt (round x)))
-                , label = Element.Input.labelHidden "Scale"
-                , min = -6
-                , max = 6
-                , step = Just 1
-                , value = toFloat (Piano.Scale.toInt a.scale)
-                , thumb = Element.Input.defaultThumb
-                }
             , el [ width (px 128) ]
                 (text
                     (if Piano.Scale.toInt a.scale > 0 then
